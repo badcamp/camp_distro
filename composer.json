@@ -1,0 +1,12 @@
+{
+    "name": "badcamp/camp_distro",
+    "description": "Drupal 8 Camp Distribution",
+    "type": "drupal-profile",
+    "authors": [
+        {
+            "name": "Sean Dietrich",
+            "email": "sean@kanopistudios.com"
+        }
+    ],
+    "require": {}
+}

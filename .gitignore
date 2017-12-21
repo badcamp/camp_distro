@@ -34,3 +34,5 @@ xmlrpc.php
 /profiles
 /scripts
 /themes
+
+/vendor/
