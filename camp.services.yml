@@ -1,0 +1,4 @@
+services:
+  plugin.manager.camp_installer:
+    class: Drupal\camp\CampInstallerPluginManager
+    parent: default_plugin_manager

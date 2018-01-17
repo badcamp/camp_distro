@@ -1,0 +1,63 @@
+name: Camp Distro
+type: profile
+description: 'Camp Distribution used for easily creating'
+core: 8.x
+distribution:
+  name: Camp Distro
+  install:
+    exclusive: 1
+    #theme: camp_bartik   # Distribution Theme to use for Install
+dependencies:
+  # core
+  - automated_cron
+  - block
+  - block_content
+  - breakpoint
+  - ckeditor
+  - color
+  - config
+  - contextual
+  - datetime
+  - dynamic_page_cache
+  - editor
+  - filter
+  - entity_reference
+  - field
+  - field_ui
+  - file
+  - help
+  - history
+  - image
+  - menu_link_content
+  - menu_ui
+  - node
+  - options
+  - page_cache
+  - path
+  - quickedit
+  - responsive_image
+  - shortcut
+  - syslog
+  - taxonomy
+  - telephone
+  - toolbar
+  - tour
+  - update
+  - views
+  - user
+  - text
+  - settings_tray
+  - layout_discovery
+
+  #custom
+  - camp_core
+
+  # contrib
+  - admin_toolbar
+
+themes:
+  # Core themes.
+  - seven
+
+  # Custom themes.
+  - camp_bartik

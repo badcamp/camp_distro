@@ -1,0 +1,5 @@
+name: Venue Management
+description: 'Manage venues as places where items are held.'
+core: 8.x
+package: Camp
+type: module

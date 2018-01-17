@@ -1,0 +1,21 @@
+{
+  "name": "badcamp/camp",
+  "description": "Easily create a website for a Drupal camp in a short amount of time.",
+  "type": "project",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Sean Dietrich <sean.e.dietrich@gmail.com>",
+      "role": "Developer"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "require": {
+    "drupal/admin_toolbar": "^1.22"
+  }
+}
