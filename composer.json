@@ -1,7 +1,7 @@
 {
   "name": "badcamp/camp",
   "description": "Easily create a website for a Drupal camp in a short amount of time.",
-  "type": "drupal-project",
+  "type": "drupal-profile",
   "license": "GPL-2.0+",
   "authors": [
     {
