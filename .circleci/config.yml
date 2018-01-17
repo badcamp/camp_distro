@@ -1,0 +1,11 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: /home/agent/build
+    docker:
+      - image: seandietrich/ci-agent:php
+    environment:
+       BASH_ENV: /home/agent/.bashrc  # Tell CircleCI where to read the shared build environment variables from
+    steps:
+      - checkout
