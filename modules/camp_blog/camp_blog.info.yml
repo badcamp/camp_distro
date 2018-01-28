@@ -2,6 +2,7 @@ name: 'Camp Blog'
 description: 'Provides Blog Post content type and related configuration.'
 type: module
 core: 8.x
+package: Camp
 dependencies:
   - field
   - menu_ui
