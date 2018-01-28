@@ -1,0 +1,14 @@
+name: 'Camp Blog'
+description: 'Provides Blog Post content type and related configuration.'
+type: module
+core: 8.x
+dependencies:
+  - field
+  - menu_ui
+  - node
+  - path
+  - pathauto
+  - taxonomy
+  - text
+  - user
+version: 8.x-1.0
