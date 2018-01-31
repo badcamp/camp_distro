@@ -35,7 +35,7 @@ function camp_install_tasks(&$install_state) {
     ),
     'camp_features_install' => array(
       'display_name' => t('Install Features'),
-      'display' => TRUE,
+      'display' => FALSE,
       'type' => 'batch',
     ),
     'camp_assemble_extra_components' => array(
@@ -51,7 +51,6 @@ function camp_install_tasks(&$install_state) {
  * Implements hook_install_tasks_alter().
  */
 function camp_install_tasks_alter(&$tasks, $install_state) {
-  $tasks['install_configure_form']['display_name'] = t('Configure Camp');
   $tasks['install_finished']['function'] = 'camp_after_install_finished';
 }
 
@@ -65,7 +64,13 @@ function camp_install_tasks_alter(&$tasks, $install_state) {
  *   The batch job definition.
  */
 function camp_features_install(array &$install_state) {
-  $batch = [];
+  $batch = [
+    'title' => t('Installing additional features'),
+    'init_message' => t('Starting to build camp features.'),
+    'progress_message' => t('Installed Feature @current step of @total.'),
+    'error_message' => t('The installation has encountered an error.'),
+    'operations' => []
+  ];
 
   array_walk($install_state['camp_features'], function($module) use (&$batch){
     $batch['operations'][] = ['camp_assemble_extra_component_then_install', (array) $module];
@@ -130,6 +135,14 @@ function camp_after_install_finished(array &$install_state) {
  * @param string|array $extra_component
  *   Name of the extra component.
  */
-function camp_assemble_extra_component_then_install($extra_component) {
-  \Drupal::service('module_installer')->install((array) $extra_component, TRUE);
+function camp_assemble_extra_component_then_install($extra_component, &$context) {
+  try {
+    \Drupal::service('module_installer')->install((array) $extra_component, TRUE);
+  }
+  catch (\Exception $e) {
+
+  }
+
+  $context['results'][] = $extra_component;
+  $context['message'] = t('Installed Feature: %module_name', ['%module_name' => $extra_component]);
 }
