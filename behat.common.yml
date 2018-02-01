@@ -1,0 +1,103 @@
+# Default profile.
+# Common settings for all profiles
+default:
+  autoload:
+    - %paths.base%/tests/behat/features/bootstrap
+  suites:
+    default:
+      paths:
+        features: %paths.base%/tests/behat/features/stories
+        bootstrap: %paths.base%/tests/behat/features/bootstrap
+      contexts:
+        - FeatureContext:
+            parameters:
+              screenshot_dir: '%paths.base%/tests/behat/screenshots'
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\DrushContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\BatchContext
+        - Drupal\DrupalExtension\Context\MarkupContext
+        - behatch:context:browser:
+            timeout: 4
+        - behatch:context:debug:
+            screenshotDir: "%paths.base%/tests/behat/screenshots/"
+        - behatch:context:json:
+            evaluationMode: javascript
+        - behatch:context:system:
+            root: "../../../"
+        - behatch:context:table
+        - behatch:context:xml
+  formatters:
+      pretty:
+      html:
+        output_path: "%paths.base%/tests/behat/reports/"
+  extensions:
+    Behat\MinkExtension:
+      goutte: ~
+      selenium2: ~
+      default_session: goutte
+      javascript_session: selenium2
+    Drupal\DrupalExtension:
+      blackbox: ~
+      drush: ~
+      api_driver: "drupal"
+      subcontexts:
+        paths:
+          - %paths.base%
+      region_map:
+        header: "#header"
+        content: "#content"
+        footer: "#footer"
+      selectors:
+        message_selector: '#messages'
+        error_message_selector: '#messages .messages.error'
+        success_message_selector: '#messages .messages.status'
+    Behatch\Extension: ~
+    emuse\BehatHTMLFormatter\BehatHTMLFormatterExtension:
+      name: html
+      renderer: Twig,Behat2
+      file_name: index
+      print_args: false
+      print_outp: false
+      loop_break: false
+
+# Setup for Google Chrome only tests.
+chrome:
+  suites:
+    default:
+      filters:
+        tags: "@chrome"
+  extensions:
+    Behat\MinkExtension:
+      selenium2:
+        browser: chrome
+        capabilities: {"browser": "chrome", "browserName": "chrome", "browserVersion": "ANY", "version": "ANY"}
+
+circleci:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://localnost
+      browser_name: chrome
+      selenium2:
+        wd_host: http://localhost:4444/wd/hub
+        capabilities: { "browser": "chrome", "version": "*" }
+    Drupal\DrupalExtension:
+      drupal:
+        drupal_root: /var/www/docroot
+      drush:
+        root: /var/www/docroot
+
+docksal:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://web
+      browser_name: chrome
+      selenium2:
+        wd_host: http://browser:4444/wd/hub
+        capabilities: { "browser": "chrome", "version": "*" }
+    Drupal\DrupalExtension:
+      drupal:
+        drupal_root: /var/www/docroot
+      drush:
+        root: /var/www/docroot

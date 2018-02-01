@@ -1,11 +1,106 @@
 version: 2
-
 jobs:
   build:
-    working_directory: /home/agent/build
+    working_directory: /var/www
     docker:
-      - image: seandietrich/ci-agent:php
-    environment:
-       BASH_ENV: /home/agent/.bashrc  # Tell CircleCI where to read the shared build environment variables from
+      - image: circleci/php:7.1-apache-node-browsers
+        environment:
+          - DRUSH_VERSION: 8.1.13
+          - DRUPAL_CONSOLE_VERSION: 1.0.2
+          - PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/circleci/.composer/vendor/bin:/usr/local/go/bin:/home/circleci/work/bin"
+          - SITE_URL: "http://localhost"
+          - PHP_INI_PATH: "/usr/local/etc/php/conf.d"
+      - image: circleci/mysql:5.6-ram
+        environment:
+          - MYSQL_ROOT_PASSWORD: root
+      - image: selenium/standalone-chrome
     steps:
-      - checkout
+      - run:
+          name: Cleanup Existing HTML folder
+          command: sudo chown -R circleci /var/www/
+      - checkout:
+          path: /var/www/camp
+      - run:
+          name: Local Fix
+          command: |
+            if [ ! -d /var/www/camp ]; then
+              sudo mv /var/www /var/camp;
+              sudo mkdir /var/www/;
+              sudo mv /var/camp /var/www/camp;
+              sudo chown -R circleci /var/www;
+            fi
+      - run:
+          name: PHP Configurations
+          command: |
+            sudo cp camp/.circleci/apache.conf /etc/apache2/sites-available/000-default.conf;
+            echo 'max_execution_time = 120' | sudo tee -a ${PHP_INI_PATH}/drupal.php.ini;
+            echo 'sendmail_path = /bin/true' | sudo tee -a ${PHP_INI_PATH}/drupal.php.ini;
+      - run:
+          name: Install Server Tools
+          command: |
+            sudo apt install mysql-client libpng-dev jq;
+            sudo docker-php-ext-install pdo_mysql gd
+      - run:
+          name: Start Apache
+          command: sudo apache2-foreground
+          background: true
+      - run:
+          name: Installing Drupal Tools
+          command: |
+            composer global require hirak/prestissimo drupal/coder;
+            phpcs --config-set installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer;
+            ln -s ~/.composer/vendor/drupal/coder/coder_sniffer/Drupal ~/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/Drupal;
+            ln -s ~/.composer/vendor/drupal/coder/coder_sniffer/DrupalPractice ~/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/DrupalPractice;
+            git clone git://git.drupal.org/sandbox/coltrane/1921926.git ~/.drush/DrupalSecure;
+            ln -s ~/.drush/DrupalSecure/DrupalSecure ~/.composer/vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/DrupalSecure;
+            sudo curl -sSL "https://github.com/hechoendrupal/drupal-console-launcher/releases/download/${DRUPAL_CONSOLE_VERSION}/drupal.phar" -o /usr/local/bin/drupal;
+            sudo curl -sSL "https://github.com/drush-ops/drush/releases/download/${DRUSH_VERSION}/drush.phar" -o /usr/local/bin/drush;
+            sudo chmod +x /usr/local/bin/*;
+            drush dl registry_rebuild --default-major=7 --destination=$HOME/.drush >/dev/null;
+            drush cc drush;
+      - run:
+          name: Drupal Tools Version Check
+          command: |
+            phpcs --version;
+            phpcs -i;
+            drupal --version;
+            drush --version;
+      - run:
+          name: Setup Drupal
+          command: |
+            cp camp/composer.json ./;
+            mkdir -p docroot/profiles/contrib;
+            mv camp docroot/profiles/contrib/;
+            composer install --ansi;
+            jq '.["extra"]["merge-plugin"]["require"] += ["docroot/profiles/contrib/camp/composer.json"]' composer.json > composer.json.new;
+            mv composer.json.new composer.json
+            composer update --lock;
+            sudo chmod -R 777 /var/www/docroot;
+      - run:
+          name: Drush Site Install
+          command: |
+            mkdir -p sites/default/files;
+            mkdir themes;
+            sudo cp /var/www/docroot/sites/default/default.settings.php /var/www/docroot/sites/default/settings.php;
+            sudo drupal site:install standard \
+              --yes \
+              --no-interaction \
+              --site-name="Camp Website" \
+              --db-type=mysql \
+              --db-host=127.0.0.1 \
+              --db-name=circle_test \
+              --db-user=root \
+              --db-pass=root;
+            sudo mkdir docroot/themes;
+            sudo chown -R www-data:www-data /var/www/;
+      - run:
+          name: Verify Site is Running
+          command: curl -I $SITE_URL
+      - run:
+          name: Run PHPUnit Tests
+          command: ../../../../bin/phpunit --colors="always"
+          working_directory: docroot/profiles/contrib/camp
+      - run:
+          name: Run Behat Tests
+          command: ../../../../bin/behat -p circleci --colors --format progress;
+          working_directory: docroot/profiles/contrib/camp

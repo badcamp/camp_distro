@@ -1,0 +1,17 @@
+imports:
+  - behat.common.yml
+
+# Local overrides to the default profile
+default:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://web
+      browser_name: chrome
+      selenium2:
+        wd_host: http://browser:4444/wd/hub
+        capabilities: { "browser": "chrome", "version": "*" }
+    Drupal\DrupalExtension:
+      drupal:
+        drupal_root: /var/www/docroot/
+      drush:
+        root: /var/www/docroot/
