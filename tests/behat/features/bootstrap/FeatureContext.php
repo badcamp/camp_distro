@@ -37,8 +37,10 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
       $driver = $this->getSession()->getDriver();
       if ($driver instanceof Behat\Mink\Driver\Selenium2Driver) {
         $fileName = date('d-m-y') . '-' . uniqid() . '.png';
-        $this->saveScreenshot($fileName, $this->screenshot_dir);
-        print 'Screenshot at: '.$this->screenshot_dir.'/' . $fileName;
+        //$this->saveScreenshot($fileName, $this->screenshot_dir);
+
+        //file_put_contents($this->screenshot_dir . '/' . $fileName, $this->getSession()->getDriver()->getScreenshot());
+        //print 'Screenshot at: '.$this->screenshot_dir.'/' . $fileName;
       }
     }
   }
@@ -135,21 +137,5 @@ class FeatureContext extends RawDrupalContext implements SnippetAcceptingContext
     }
   }
 
-  /**
-   * @When /^I do not follow redirects$/
-   */
-  public function iDoNotFollowRedirects() {
-    $this->getSession()->getDriver()->getClient()->followRedirects(false);
-  }
 
-  /**
-   * @Then /^I (?:am|should be) redirected to "([^"]*)"$/
-   */
-  public function iAmRedirectedTo($actualPath) {
-    $headers = $this->getSession()->getResponseHeaders();
-    assertTrue(isset($headers['Location'][0]));
-
-    $redirectComponents = parse_url($headers['Location'][0]);
-    assertEquals($redirectComponents['path'], $actualPath);
-  }
 }

@@ -45,8 +45,7 @@
     "behat/mink-extension": "^2.2",
     "drupal/drupal-extension": "~3.0",
     "behatch/contexts": "3.0.1",
-    "emuse/behat-html-formatter": "0.1.0",
-    "behat/common-contexts": "^1.2"
+    "emuse/behat-html-formatter": "0.1.0"
   },
   "conflict": {
     "drupal/drupal": "*"
