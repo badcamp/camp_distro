@@ -11,8 +11,9 @@ dependencies:
   - menu_ui
   - node
   - path
-  - sponsor
+  - pathauto
   - taxonomy
   - text
   - user
+  - views
 version: 8.x-1.0

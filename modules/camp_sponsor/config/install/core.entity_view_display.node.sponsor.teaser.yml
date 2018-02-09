@@ -5,7 +5,9 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.sponsor.field_sponsor_description
     - field.field.node.sponsor.field_sponsor_level
+    - field.field.node.sponsor.field_sponsor_logo
     - field.field.node.sponsor.field_sponsor_members
+    - field.field.node.sponsor.field_sponsor_url
     - node.type.sponsor
   module:
     - user
@@ -20,4 +22,6 @@ content:
 hidden:
   field_sponsor_description: true
   field_sponsor_level: true
+  field_sponsor_logo: true
   field_sponsor_members: true
+  field_sponsor_url: true
