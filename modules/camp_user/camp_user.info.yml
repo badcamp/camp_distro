@@ -1,0 +1,15 @@
+name: User
+description: 'Provide User related configuration.'
+type: module
+core: 8.x
+package: Camp
+dependencies:
+  - field
+  - file
+  - image
+  - link
+  - pathauto
+  - social_media_links_field
+  - text
+  - user
+version: 8.x-1.0
