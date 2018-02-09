@@ -56,7 +56,7 @@ jobs:
       - run:
           name: Install Server Tools
           command: |
-            sudo apt -o dir::cache::archives="/home/circleci/aptcache" install mysql-client jq imagemagick;
+            sudo apt install mysql-client jq imagemagick;
             buildDeps=" \
               g++ \
               libfreetype6-dev \
@@ -70,8 +70,8 @@ jobs:
               libpng12-dev \
               libxslt1-dev \
               zlib1g-dev";
-            sudo apt-get -o dir::cache::archives="/home/circleci/aptcache" update >/dev/null;
-            sudo apt-get -o dir::cache::archives="/home/circleci/aptcache" -y --force-yes --no-install-recommends install >/dev/null \
+            sudo apt-get update >/dev/null;
+            sudo apt-get -y --force-yes --no-install-recommends install >/dev/null \
               $buildDeps \
               libfreetype6 \
               libgpgme11 \
