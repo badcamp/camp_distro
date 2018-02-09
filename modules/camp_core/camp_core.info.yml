@@ -1,6 +1,10 @@
-name: Site Core
+name: 'Site Core'
 description: 'Core site functionality'
 core: 8.x
 package: Camp
 type: module
 hidden: true
+version: 8.x-1.0
+dependencies:
+  - node
+  - pathauto
