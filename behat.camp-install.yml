@@ -1,0 +1,25 @@
+imports:
+  - behat.yml
+
+default:
+  suites:
+    default:
+      contexts:
+        - InstallerContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\DrushContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\DrupalExtension\Context\BatchContext
+        - Behatch\Context\DebugContext:
+            screenshotDir: "%paths.base%/tests/behat/screenshots/"
+        - Behatch\Context\JsonContext:
+            evaluationMode: javascript
+        - Behatch\Context\RestContext
+        - Behatch\Context\SystemContext:
+            root: "../../"
+        - Behatch\Context\TableContext
+        - Behatch\Context\XmlContext
+      filters:
+        tags: "@install"
