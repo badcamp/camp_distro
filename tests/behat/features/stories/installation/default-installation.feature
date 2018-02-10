@@ -4,11 +4,8 @@ Feature: Installation - Encampment - Default installation.
   I want to be able to install Encampment for my camp
   So that I will be able to initiate the site with the default installation
 
-  Background: Clean Database
+  Background: Starting same steps for every install
     Given I have a clean database
-
-  @javascript
-  Scenario: Default installation for Encampment
     Given I go to "/core/install.php"
     Then I should see "Choose language"
     When I press "Save and continue"
@@ -29,6 +26,30 @@ Feature: Installation - Encampment - Default installation.
     When I press "Assemble and configure"
     And I wait for the batch job to finish
     Then I should see "Configure Features"
+
+  @javascript @default
+  Scenario: Default installation for Encampment
     When I press "Assemble and install"
     And I wait for the batch job to finish
     Then I should see "Welcome to Encampment Distro"
+
+  @javascript @sponsor
+  Scenario: Configure Sponsor Levels
+    When I click "Sponsor Camp Sponsor Levels"
+    Then I should see "Levels"
+    When I fill in "Levels" with:
+      """
+      Core Level
+      Contrib Level
+      Support Level
+      Individual Level
+      """
+    When I press "Assemble and install"
+    And I wait for the batch job to finish
+    Then I should see "Welcome to Encampment Distro"
+    When I go to "/admin/structure/taxonomy/manage/sponsor_level/overview"
+    Then I should see "Core Level" before "Contrib Level"
+    And I should see "Contrib Level" before "Support Level"
+    And I should see "Support Level" before "Individual Level"
+
+

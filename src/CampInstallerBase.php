@@ -4,8 +4,10 @@ namespace Drupal\camp;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\PluginBase;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-abstract class CampInstallerBase extends PluginBase implements CampInstallerInterface {
+abstract class CampInstallerBase extends PluginBase implements CampInstallerInterface, ContainerFactoryPluginInterface {
 
   /**
    * @return string
@@ -35,4 +37,15 @@ abstract class CampInstallerBase extends PluginBase implements CampInstallerInte
    * {@inheritdoc}
    */
   abstract public function submitForm(array &$form, FormStateInterface $form_state);
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition
+    );
+  }
 }

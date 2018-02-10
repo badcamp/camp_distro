@@ -138,11 +138,6 @@ jobs:
             phpcs -i;
             drupal --version;
             drush --version;
-      - restore_cache:
-          name: Restore Composer cache
-          keys:
-            - site-composer-v1-{{ checksum "composer.lock" }}
-            - site-composer-v1-
       - run:
           name: Setup Drupal
           command: |
@@ -158,10 +153,6 @@ jobs:
             mkdir -p docroot/themes;
             sudo cp -f /var/www/docroot/profiles/contrib/camp/.circleci/settings.* /var/www/docroot/sites/default/;
             sudo chown -R www-data:www-data /var/www/;
-      - save_cache:
-          name: Save Composer cache
-          key: site-composer-v1-{{ checksum "composer.lock" }}
-          paths: [ vendor, docroot/core, docroot/modules/contrib, docroot/themes/contrib ]
       - run:
           name: Verify Site is Running
           command: curl -i $SITE_URL
