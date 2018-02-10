@@ -1,0 +1,15 @@
+camp_core.code_of_conduct_form:
+  path: 'admin/config/camp/code-of-conduct'
+  defaults:
+    _form:  '\Drupal\camp_core\Form\CodeOfConduct'
+    _title: 'Code of Conduct'
+  requirements:
+    _permission: 'administer code of conduct'
+
+camp_core.code_of_conduct:
+  path: 'code-of-conduct'
+  defaults:
+    _controller: '\Drupal\camp_core\Controller\PageCodeOfConductController::page'
+    _title: 'Code of Conduct'
+  requirements:
+    _permission: 'access content'

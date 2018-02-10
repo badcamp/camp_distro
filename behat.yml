@@ -1,0 +1,75 @@
+# Default profile.
+# Common settings for all profiles
+default:
+  autoload:
+    - %paths.base%/tests/behat/features/bootstrap
+  suites:
+    default:
+      paths:
+        features: %paths.base%/tests/behat/features/stories
+        bootstrap: %paths.base%/tests/behat/features/bootstrap
+      contexts:
+        - FeatureContext:
+            parameters:
+              screenshot_dir: '%paths.base%/tests/behat/screenshots'
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\DrushContext
+        - Drupal\DrupalExtension\Context\MessageContext
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\DrupalExtension\Context\BatchContext
+        - Behatch\Context\DebugContext:
+            screenshotDir: "%paths.base%/tests/behat/screenshots/"
+        - Behatch\Context\JsonContext:
+            evaluationMode: javascript
+        - Behatch\Context\RestContext
+        - Behatch\Context\SystemContext:
+            root: "../../"
+        - Behatch\Context\TableContext
+        - Behatch\Context\XmlContext
+  formatters:
+      pretty:
+      html:
+        output_path: "%paths.base%/tests/behat/reports/"
+  extensions:
+    Behat\MinkExtension:
+      files_path: "%paths.base%/tests/behat/assets/"
+      selenium2:
+        wd_host: http://browser:4444/wd/hub
+        capabilities:
+          browser: 'chrome'
+          version: "*"
+          browserName: 'chrome'
+          chrome:
+            switches: ['--disable-gpu', '--window-size=1280,1600', '--headless']
+          marionette: true
+      base_url: http://web
+      browser_name: 'chrome'
+      default_session: selenium2
+    Drupal\DrupalExtension:
+      blackbox: ~
+      api_driver: "drupal"
+      drush_driver: "drush"
+      subcontexts:
+        paths:
+          - %paths.base%
+      drupal:
+        drupal_root: /var/www/docroot
+      drush:
+        root: /var/www/docroot
+      region_map:
+        header: "#header"
+        content: "#content"
+        footer: "#footer"
+      selectors:
+        message_selector: '#messages'
+        error_message_selector: '#messages .messages.error'
+        success_message_selector: '#messages .messages.status'
+    Behatch\Extension: ~
+    emuse\BehatHTMLFormatter\BehatHTMLFormatterExtension:
+      name: html
+      renderer: Twig,Behat2
+      file_name: index
+      print_args: false
+      print_outp: false
+      loop_break: false

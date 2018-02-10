@@ -1,9 +1,9 @@
-name: Camp Distro
+name: Encampment
 type: profile
 description: 'Camp Distribution used for easily creating'
 core: 8.x
 distribution:
-  name: Camp Distro
+  name: Encampment
   install:
     exclusive: 1
     #theme: camp_bartik   # Distribution Theme to use for Install
@@ -14,7 +14,6 @@ dependencies:
   - block_content
   - breakpoint
   - ckeditor
-  - color
   - config
   - contextual
   - datetime
@@ -26,7 +25,6 @@ dependencies:
   - field_ui
   - file
   - help
-  - history
   - image
   - menu_link_content
   - menu_ui
@@ -39,8 +37,6 @@ dependencies:
   - shortcut
   - syslog
   - taxonomy
-  - telephone
-  - toolbar
   - tour
   - update
   - views
