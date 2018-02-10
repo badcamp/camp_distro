@@ -1,9 +1,10 @@
-name: 'Blog'
+name: Blog
 description: 'Provides Blog Post content type and related configuration.'
 type: module
 core: 8.x
 package: Camp
 dependencies:
+  - ctools
   - field
   - menu_ui
   - node
@@ -12,4 +13,5 @@ dependencies:
   - taxonomy
   - text
   - user
+  - views
 version: 8.x-1.0
