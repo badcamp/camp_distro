@@ -1,0 +1,35 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.sponsor_logo
+    - field.field.node.sponsor.field_sponsor_description
+    - field.field.node.sponsor.field_sponsor_level
+    - field.field.node.sponsor.field_sponsor_logo
+    - field.field.node.sponsor.field_sponsor_members
+    - field.field.node.sponsor.field_sponsor_url
+    - image.style.sponsor_logo
+    - node.type.sponsor
+  module:
+    - image
+    - user
+id: node.sponsor.sponsor_logo
+targetEntityType: node
+bundle: sponsor
+mode: sponsor_logo
+content:
+  field_sponsor_logo:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: sponsor_logo
+      image_link: content
+    third_party_settings: {  }
+hidden:
+  field_sponsor_description: true
+  field_sponsor_level: true
+  field_sponsor_members: true
+  field_sponsor_url: true
+  links: true

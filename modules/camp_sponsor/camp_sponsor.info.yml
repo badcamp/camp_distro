@@ -1,0 +1,19 @@
+name: Sponsor
+description: 'Provides Sponsor content type and related configuration. Use this <em>Sponsor</em> type to show appreciation for an organization or individuals help with the camp.'
+type: module
+core: 8.x
+package: Camp
+dependencies:
+  - field
+  - file
+  - image
+  - link
+  - menu_ui
+  - node
+  - path
+  - pathauto
+  - taxonomy
+  - text
+  - user
+  - views
+version: 8.x-1.0

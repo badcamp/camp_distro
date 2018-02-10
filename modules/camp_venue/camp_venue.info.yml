@@ -3,3 +3,4 @@ description: 'Manage venues as places where items are held.'
 core: 8.x
 package: Camp
 type: module
+version: 8.x-1.0
