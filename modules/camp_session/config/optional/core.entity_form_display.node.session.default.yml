@@ -1,0 +1,202 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.session.field_date
+    - field.field.node.session.field_registration_limit
+    - field.field.node.session.field_session_description
+    - field.field.node.session.field_session_files
+    - field.field.node.session.field_session_status
+    - field.field.node.session.field_session_track
+    - field.field.node.session.field_session_video
+    - field.field.node.session.field_skill_level
+    - field.field.node.session.field_speakers
+    - field.field.node.session.field_sponsors
+    - field.field.node.session.field_stick_to_top_of_date
+    - field.field.node.session.field_stick_to_top_of_schedule
+    - field.field.node.session.field_venue
+    - node.type.session
+  module:
+    - datetime_range
+    - field_group
+    - file
+    - path
+    - text
+    - video_embed_field
+third_party_settings:
+  field_group:
+    group_details:
+      children:
+        - title
+        - field_speakers
+        - field_session_track
+        - field_skill_level
+        - field_session_description
+        - field_session_files
+        - field_session_video
+        - field_sponsors
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        label: Information
+        description: ''
+        required_fields: true
+        id: ''
+        classes: ''
+      label: Information
+      region: content
+    group_session_admin:
+      children:
+        - field_venue
+        - field_registration_limit
+        - field_date
+        - field_stick_to_top_of_schedule
+        - field_stick_to_top_of_date
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Session Admin'
+      region: content
+id: node.session.default
+targetEntityType: node
+bundle: session
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_date:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_registration_limit:
+    weight: 5
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_session_description:
+    weight: 4
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_session_files:
+    weight: 5
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_session_status:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_session_track:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_session_video:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: video_embed_field_textfield
+    region: content
+  field_skill_level:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_speakers:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_sponsors:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_stick_to_top_of_date:
+    weight: 8
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_stick_to_top_of_schedule:
+    weight: 7
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_venue:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  path:
+    type: path
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: options_buttons
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 5
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  sticky: true

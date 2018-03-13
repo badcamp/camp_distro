@@ -1,0 +1,6 @@
+entity.evaluation_type.add_form:
+  route_name: entity.evaluation_type.add_form
+  title: 'Add Evaluation type'
+  appears_on:
+    - entity.evaluation_type.collection
+

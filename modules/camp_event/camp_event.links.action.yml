@@ -1,0 +1,10 @@
+camp_event.admin:
+  route_name: node.add
+  title: 'Add Event'
+  route_parameters:
+    node_type: event
+  options:
+    query:
+      destination: /admin/content/camp/event
+  appears_on:
+    - 'view.events.admin'

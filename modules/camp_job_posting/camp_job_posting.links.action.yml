@@ -1,0 +1,10 @@
+camp_job_posting.admin:
+  route_name: node.add
+  title: 'Add Job Posting'
+  route_parameters:
+    node_type: job_posting
+  options:
+    query:
+      destination: /admin/content/camp/jobs
+  appears_on:
+    - 'view.job_postings.admin'

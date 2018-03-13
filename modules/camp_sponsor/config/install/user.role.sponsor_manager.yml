@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: sponsor_manager
-label: 'Sponsor Manager'
-weight: 3
-is_admin: null

@@ -12,4 +12,22 @@ camp_core.code_of_conduct:
     _controller: '\Drupal\camp_core\Controller\PageCodeOfConductController::page'
     _title: 'Code of Conduct'
   requirements:
+    _custom_access: '\Drupal\camp_core\Controller\PageCodeOfConductController::getAccess'
     _permission: 'access content'
+
+
+camp_core.content:
+  path: '/admin/content/camp'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Camp'
+  requirements:
+    _permission: 'access administration pages'
+
+camp_core.config:
+  path: '/admin/config/camp'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Camp'
+  requirements:
+    _permission: 'access administration pages'

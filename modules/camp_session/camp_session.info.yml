@@ -1,0 +1,30 @@
+name: Session
+description: 'Provides Session content type and related configuration. '
+type: module
+core: 8.x
+package: Camp
+dependencies:
+  - camp_schedule
+  - camp_session
+  - camp_sponsor
+  - camp_training
+  - camp_venue
+  - core
+  - datetime_range
+  - field
+  - field_delimiter
+  - field_group
+  - field_permissions
+  - file
+  - flag
+  - menu_ui
+  - node
+  - options
+  - path
+  - pathauto
+  - system
+  - taxonomy
+  - text
+  - user
+  - video_embed_field
+version: 8.x-1.0

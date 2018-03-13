@@ -1,0 +1,40 @@
+langcode: en
+status: true
+dependencies: {  }
+id: event_manager
+label: 'Event Manager'
+weight: -7
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'create event content'
+  - 'create field_date'
+  - 'create field_registration_limit'
+  - 'create field_stick_to_top_of_date'
+  - 'create field_stick_to_top_of_schedule'
+  - 'create field_venue'
+  - 'delete any event content'
+  - 'delete event revisions'
+  - 'delete own event content'
+  - 'delete terms in event_type'
+  - 'edit any event content'
+  - 'edit field_date'
+  - 'edit field_registration_limit'
+  - 'edit field_stick_to_top_of_date'
+  - 'edit field_stick_to_top_of_schedule'
+  - 'edit field_venue'
+  - 'edit own event content'
+  - 'edit own field_date'
+  - 'edit own field_registration_limit'
+  - 'edit own field_stick_to_top_of_date'
+  - 'edit own field_stick_to_top_of_schedule'
+  - 'edit own field_venue'
+  - 'edit terms in event_type'
+  - 'revert event revisions'
+  - 'view event revisions'
+  - 'view field_registration_limit'
+  - 'view field_stick_to_top_of_date'
+  - 'view field_stick_to_top_of_schedule'
+  - 'view own field_registration_limit'
+  - 'view own field_stick_to_top_of_date'
+  - 'view own field_stick_to_top_of_schedule'

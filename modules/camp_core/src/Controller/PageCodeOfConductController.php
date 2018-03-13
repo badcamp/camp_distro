@@ -4,6 +4,7 @@ namespace Drupal\camp_core\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Access\AccessResult;
 
 /**
  * Class PageCodeOfConductController
@@ -23,11 +24,20 @@ class PageCodeOfConductController extends ControllerBase {
    *
    */
   public function page() {
-    $value = $this->config('camp_core.code_of_conduct')->get('value');
-    $format = $this->config('camp_core.code_of_conduct')->get('format');
+    $message = $this->config('camp_core.code_of_conduct')->get('message');
     return [
-      '#markup' => check_markup($value, $format),
+      '#markup' => check_markup($message['value'], $message['format']),
     ];
   }
 
+  /**
+   * @return \Drupal\Core\Access\AccessResult
+   */
+  public function getAccess() {
+    $enable = $this->config('camp_core.code_of_conduct')->get('enable');
+    if($enable)
+      return AccessResult::allowed();
+    else
+      return AccessResult::forbidden();
+  }
 }

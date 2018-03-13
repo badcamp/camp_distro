@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.blog.field_blog_tags
     - node.type.blog
   module:
+    - field_delimiter
     - text
     - user
 id: node.blog.default
@@ -16,21 +17,20 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 1
+    weight: 0
     settings: {  }
     third_party_settings: {  }
     region: content
   field_blog_tags:
-    weight: 0
-    label: hidden
+    weight: 1
+    label: inline
     settings:
       link: true
-    third_party_settings: {  }
+    third_party_settings:
+      field_delimiter:
+        delimiter: ', '
     type: entity_reference_label
     region: content
-  links:
-    weight: 2
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  flag_add_to_schedule: true
+  links: true

@@ -1,0 +1,30 @@
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.summit.field_date
+    - field.field.node.summit.field_sponsors
+    - field.field.node.summit.field_stick_to_top_of_date
+    - field.field.node.summit.field_stick_to_top_of_schedule
+    - field.field.node.summit.field_summit_description
+    - node.type.summit
+  module:
+    - user
+id: node.summit.teaser
+targetEntityType: node
+bundle: summit
+mode: teaser
+content:
+  flag_add_to_schedule:
+    weight: 10
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_date: true
+  field_sponsors: true
+  field_stick_to_top_of_date: true
+  field_stick_to_top_of_schedule: true
+  field_summit_description: true

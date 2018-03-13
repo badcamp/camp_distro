@@ -1,0 +1,23 @@
+session_accepted:
+  enabled: 1
+  subject: 'Session Accepted: [node:title]'
+  message:
+    value: ''
+    format: full_html
+session_submitted:
+  enabled: true
+  message:
+    format: html
+    value: ''
+session_rejected:
+  enabled: 1
+  subject: 'Session Rejected: [node:title]'
+  message:
+    value: ''
+    format: full_html
+session_proposed:
+  enabled: 1
+  subject: 'Session Submitted: [node:title]'
+  message:
+    value: ''
+    format: full_html

@@ -1,0 +1,9 @@
+camp_schedule.schedule_admin:
+  title: 'Schedule'
+  parent: camp_core.content
+  route_name: camp_schedule.schedule
+
+camp_schedule.schedule_settings_form:
+  title: 'Schedule Settings'
+  parent: camp_core.config
+  route_name: camp_schedule.admin

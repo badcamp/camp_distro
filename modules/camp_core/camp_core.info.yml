@@ -6,5 +6,29 @@ type: module
 hidden: true
 version: 8.x-1.0
 dependencies:
+  - block
+  - block_content
+  - ckeditor
+  - daterange_compact
+  - datetime_range
+  - editor
+  - field
+  - field_permissions
+  - file
+  - filter
+  - honeypot
+  - image
+  - key
+  - menu_link_content
+  - menu_ui
   - node
+  - path
   - pathauto
+  - responsive_image
+  - shortcut
+  - system
+  - taxonomy
+  - text
+  - tour
+  - user
+  - views

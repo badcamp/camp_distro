@@ -4,8 +4,10 @@ type: module
 core: 8.x
 package: Camp
 dependencies:
+  - camp_core
   - ctools
   - field
+  - field_delimiter
   - menu_ui
   - node
   - path

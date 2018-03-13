@@ -1,1 +1,16 @@
-required: true
+bundle: camp
+required:
+  - core.base_field_override.node.blog.promote
+  - core.entity_form_display.node.blog.default
+  - core.entity_view_display.node.blog.default
+  - core.entity_view_display.node.blog.teaser
+  - field.field.node.blog.body
+  - field.field.node.blog.field_blog_tags
+  - field.storage.node.field_blog_tags
+  - node.type.blog
+  - pathauto.pattern.blog_post_alias
+  - pathauto.pattern.blog_types
+  - taxonomy.vocabulary.blog_tags
+  - user.role.blog_manager
+  - user.role.blog_writer
+  - views.view.blog_content

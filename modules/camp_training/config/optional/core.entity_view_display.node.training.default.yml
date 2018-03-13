@@ -1,0 +1,107 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.training.field_date
+    - field.field.node.training.field_registration_limit
+    - field.field.node.training.field_skill_level
+    - field.field.node.training.field_sponsors
+    - field.field.node.training.field_stick_to_top_of_date
+    - field.field.node.training.field_stick_to_top_of_schedule
+    - field.field.node.training.field_trainers
+    - field.field.node.training.field_training_description
+    - field.field.node.training.field_training_files
+    - field.field.node.training.field_training_links
+    - field.field.node.training.field_venue
+    - node.type.training
+  module:
+    - datetime_range
+    - file
+    - link
+    - text
+    - user
+id: node.training.default
+targetEntityType: node
+bundle: training
+mode: default
+content:
+  field_date:
+    weight: 0
+    label: visually_hidden
+    settings:
+      format_type: start_date_only_full_day_full_month_day_number
+      separator: '-'
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_skill_level:
+    weight: 5
+    label: visually_hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_sponsors:
+    weight: 7
+    label: visually_hidden
+    settings:
+      view_mode: sponsor_logo
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_trainers:
+    weight: 1
+    label: visually_hidden
+    settings:
+      view_mode: member_display
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_training_description:
+    weight: 2
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_training_files:
+    weight: 6
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: file_table
+    region: content
+  field_training_links:
+    weight: 4
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_venue:
+    weight: 3
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_add_to_schedule:
+    weight: 8
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_registration_limit: true
+  field_stick_to_top_of_date: true
+  field_stick_to_top_of_schedule: true
+  links: true

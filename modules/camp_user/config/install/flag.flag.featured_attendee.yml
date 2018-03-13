@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: featured_attendee
+label: 'Featured Attendee'
+bundles: {  }
+entity_type: user
+global: true
+weight: 0
+flag_short: 'Mark as Featured Attendee'
+flag_long: ''
+flag_message: ''
+unflag_short: 'Unmark as Featured Attendee'
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+flag_type: 'entity:user'
+link_type: ajax_link
+flagTypeConfig:
+  show_in_links:
+    full: full
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+  show_on_profile: true
+linkTypeConfig: {  }

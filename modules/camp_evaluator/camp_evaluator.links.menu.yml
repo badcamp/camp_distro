@@ -1,0 +1,17 @@
+
+# Evaluation menu items definition
+entity.evaluation.collection:
+  title: 'Evaluations'
+  route_name: entity.evaluation.collection
+  description: 'List Evaluation entities'
+  parent: system.admin_content
+  weight: 100
+
+
+# Evaluation type menu items definition
+entity.evaluation_type.collection:
+  title: 'Evaluation types'
+  route_name: entity.evaluation_type.collection
+  description: 'List Evaluation type (bundles)'
+  parent: system.admin_structure
+  weight: 99

@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: financial_manager
+label: 'Financial Manager'
+weight: -1
+is_admin: null
+permissions:
+  - 'access toolbar'

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: job_posting
+label: 'Job Posting'
+type: 'canonical_entities:node'
+pattern: 'jobs/[node:field_company:entity:title]/[node:title]'
+selection_criteria:
+  9f3dbb38-ceb4-4b8c-bf9c-1f97772a203f:
+    id: node_type
+    bundles:
+      job_posting: job_posting
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 9f3dbb38-ceb4-4b8c-bf9c-1f97772a203f
+selection_logic: and
+weight: -5
+relationships: {  }

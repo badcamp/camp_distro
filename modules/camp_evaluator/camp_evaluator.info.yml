@@ -1,0 +1,6 @@
+name: Evaluator
+type: module
+package: Camp
+description: Run evaluations through the team to determine whether the proposed item should be used.
+core: 8
+version: 8.x-1.0

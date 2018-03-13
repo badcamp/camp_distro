@@ -1,0 +1,32 @@
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.event.field_date
+    - field.field.node.event.field_event_description
+    - field.field.node.event.field_event_type
+    - field.field.node.event.field_sponsors
+    - field.field.node.event.field_stick_to_top_of_date
+    - field.field.node.event.field_stick_to_top_of_schedule
+    - node.type.event
+  module:
+    - user
+id: node.event.teaser
+targetEntityType: node
+bundle: event
+mode: teaser
+content:
+  flag_add_to_schedule:
+    weight: 10
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_date: true
+  field_event_description: true
+  field_event_type: true
+  field_sponsors: true
+  field_stick_to_top_of_date: true
+  field_stick_to_top_of_schedule: true

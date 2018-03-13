@@ -1,0 +1,58 @@
+<?php
+
+use \Drupal\Core\Url;
+use \Drupal\Core\Access\AccessResult;
+
+/**
+ * Implements hook_theme().
+ */
+function camp_schedule_theme($existing, $type, $theme, $path) {
+  return [
+    'camp_scheduler' => [
+      'template' => 'camp-scheduler',
+      'variables' => [ 'events' => NULL]
+    ]
+  ];
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function camp_schedule_menu_local_tasks_alter(&$data, $route_name) {
+  if($route_name == 'camp_schedule.schedule_display') {
+    $date_service = \Drupal::service('date.formatter');
+    $config = \Drupal::config('camp_schedule.schedule_settings');
+
+    if($config->get('single_page') === true){
+      return;
+    }
+
+    $dates = [];
+
+    $settings_dates = $config->get('dates', ['start' => false, 'end' => false]);
+    $current_date = $date_service->format(strtotime($settings_dates['start']), 'custom', 'Y-m-d');
+    if($current_date == false)
+      return;
+
+    $end_date = $date_service->format(strtotime($settings_dates['end']), 'custom', 'Y-m-d');
+    while($current_date <= $end_date){
+      $dates[] = $current_date;
+      $current_date = $date_service->format(strtotime($current_date . ' +1 day'), 'custom', 'Y-m-d');
+    }
+
+    foreach($dates AS $k => $date) {
+      $day = $date_service->format(strtotime($date), 'day_of_week_short');
+      $data['tabs'][0]['camp_schedule.schedule.camp_' . $k] = [
+        '#theme' => 'menu_local_task',
+        '#link' => [
+          'title' => $day,
+          'url' => Url::fromRoute('camp_schedule.schedule_display', ['date' => $date]),
+          'localized_options' => [],
+        ],
+        '#active' => FALSE,
+        '#weight' => $k,
+        '#access' => AccessResult::allowed()
+      ];
+    }
+  }
+}

@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Training
+type: training
+description: 'A <em>Training</em> is a topic which has a specific topic of focus and is usually much more hands on.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

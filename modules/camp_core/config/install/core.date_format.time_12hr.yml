@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: time_12hr
+label: 'Time: 12hr'
+locked: false
+pattern: 'g:ia'

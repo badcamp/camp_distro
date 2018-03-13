@@ -1,0 +1,7 @@
+name: Stripe - Payment
+type: module
+core: 8.x
+dependencies:
+  - payment
+version: 8.x-1.0
+package: Payment

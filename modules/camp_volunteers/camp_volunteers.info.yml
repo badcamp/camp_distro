@@ -1,0 +1,9 @@
+name: Volunteers
+type: module
+core: 8.x
+dependencies:
+  - honeypot
+  - user
+  - webform
+version: 8.x-1.0
+package: Camp

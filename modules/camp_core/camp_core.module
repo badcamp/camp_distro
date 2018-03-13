@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function camp_core_views_data_alter(array &$data) {
+
+  $fields = \Drupal::service('entity_field.manager')->getFieldMapByFieldType('daterange');
+
+  $x = 1;
+  foreach($fields AS $entity_type => $entity_fields) {
+    foreach($entity_fields AS $field_name => $field_info) {
+      foreach($field_info['bundles'] AS $bundle) {
+
+        $data[$entity_type . '__' . $field_name]['date_sort'] = [
+          'title' => t('Date (' . $field_name . ') - Extended'),
+          'group' => t('Content'),
+          'help' => t('Sort dates by granular control.'),
+          'sort' => [
+            'field' => $field_name . '_value',
+            'id' => 'date_sort',
+          ],
+        ];
+
+        $data[$entity_type . '__' . $field_name]['date_filter__year_month'] = [
+          'title' => t('Date (' . $field_name . ') - Extended'),
+          'group' => t('Content'),
+          'help' => t('Filter dates using the format: YYYYMM'),
+          'argument' => [
+            'field' => $field_name . '_value',
+            'id' => 'datetime_year_month',
+          ],
+        ];
+
+        $data[$entity_type . '__' . $field_name]['date_filter__full_date'] = [
+          'title' => t('Date (' . $field_name . ') - Extended'),
+          'group' => t('Content'),
+          'help' => t('Filter dates using the format: YYYYMMDD'),
+          'argument' => [
+            'field' => $field_name . '_value',
+            'id' => 'datetime_full_date',
+          ],
+        ];
+
+        $data[$entity_type . '__' . $field_name]['date_filter__year'] = [
+          'title' => t('Date (' . $field_name . ') - Extended'),
+          'group' => t('Content'),
+          'help' => t('Filter dates using the format: YYYY'),
+          'argument' => [
+            'field' => $field_name . '_value',
+            'id' => 'datetime_year',
+          ],
+        ];
+
+        $data[$entity_type . '__' . $field_name]['date_filter__month'] = [
+          'title' => t('Date (' . $field_name . ') - Extended'),
+          'group' => t('Content'),
+          'help' => t('Filter dates using the format: MM'),
+          'argument' => [
+            'field' => $field_name . '_value',
+            'id' => 'datetime_month',
+          ],
+        ];
+
+        $data[$entity_type . '__' . $field_name]['date_filter__day'] = [
+          'title' => t('Date (' . $field_name . ') - Extended'),
+          'group' => t('Content'),
+          'help' => t('Filter dates using the format: DD'),
+          'argument' => [
+            'field' => $field_name . '_value',
+            'id' => 'datetime_day',
+          ],
+        ];
+
+        $data[$entity_type . '__' . $field_name]['date_filter__week'] = [
+          'title' => t('Date (' . $field_name . ') - Extended'),
+          'group' => t('Content'),
+          'help' => t('Filter dates using the format: W'),
+          'argument' => [
+            'field' => $field_name . '_value',
+            'id' => 'datetime_week',
+          ],
+        ];
+      }
+    }
+  }
+}

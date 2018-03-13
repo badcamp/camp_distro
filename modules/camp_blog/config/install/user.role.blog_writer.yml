@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies: {  }
+id: blog_writer
+label: 'Blog Writer'
+weight: -2
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'create blog content'
+  - 'delete own blog content'
+  - 'edit own blog content'

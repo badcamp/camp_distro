@@ -29,12 +29,29 @@ class CodeOfConduct extends ConfigFormBase {
 
     $config = $this->config('camp_core.code_of_conduct');
 
+    $form['enable'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('I want to have a Code of Conduct'),
+      '#default_value' => $config->get('enable')
+    ];
+
+    $form['code_wrapper'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Code of Conduct'),
+      '#states' => [
+        'visible' => [
+          ':input[name="enable"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
     // Text format.
-    $form['code_of_conduct'] = [
+    $form['code_wrapper']['code_of_conduct'] = [
       '#type' => 'text_format',
-      '#title' => 'Code of Conduct',
-      '#format' => $config->get('format'),
-      '#default_value' => $config->get('value'),
+      '#title' => $this->t('Code of Conduct'),
+      '#title_display' => 'invisible',
+      '#format' => $config->get('message')['format'],
+      '#default_value' => $config->get('message')['value'],
     ];
 
     return parent::buildForm($form, $form_state);
@@ -86,8 +103,8 @@ class CodeOfConduct extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->configFactory->getEditable('camp_core.code_of_conduct')
-      ->set('format', $form_state->getValue('code_of_conduct')['format'])
-      ->set('value', $form_state->getValue('code_of_conduct')['value'])
+      ->set('enable', $form_state->getValue('enable'))
+      ->set('message', $form_state->getValue('code_of_conduct'))
       ->save();
 
     parent::submitForm($form, $form_state);

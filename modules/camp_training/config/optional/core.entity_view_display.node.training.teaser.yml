@@ -1,0 +1,36 @@
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.training.field_date
+    - field.field.node.training.field_skill_level
+    - field.field.node.training.field_sponsors
+    - field.field.node.training.field_trainers
+    - field.field.node.training.field_training_description
+    - field.field.node.training.field_training_files
+    - field.field.node.training.field_training_links
+    - field.field.node.training.field_venue
+    - node.type.training
+  module:
+    - user
+id: node.training.teaser
+targetEntityType: node
+bundle: training
+mode: teaser
+content:
+  flag_add_to_schedule:
+    weight: 10
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_date: true
+  field_skill_level: true
+  field_sponsors: true
+  field_trainers: true
+  field_training_description: true
+  field_training_files: true
+  field_training_links: true
+  field_venue: true

@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_job_posting_documents
+    - node.type.job_posting
+  module:
+    - file
+id: node.job_posting.field_job_posting_documents
+field_name: field_job_posting_documents
+entity_type: node
+bundle: job_posting
+label: Document
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: sponsor/job
+  file_extensions: 'txt pdf doc docx rtf md'
+  max_filesize: ''
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

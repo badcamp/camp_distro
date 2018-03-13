@@ -1,0 +1,14 @@
+camp_core.content:
+  title: 'Camp'
+  parent: system.admin_content
+  route_name: camp_core.content
+
+camp_core.config:
+  title: 'Camp'
+  parent: system.admin_config
+  route_name: camp_core.config
+
+camp_core.code_of_conduct_form:
+  title: 'Code of Conduct'
+  parent: camp_core.config
+  route_name: camp_core.code_of_conduct_form

@@ -1,0 +1,4 @@
+bundle: camp
+excluded:
+  - user.role.session_evaluator
+required: true

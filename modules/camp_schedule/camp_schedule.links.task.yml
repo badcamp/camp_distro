@@ -1,0 +1,5 @@
+entity.node.registrations:
+  title: 'Registrations'
+  base_route: entity.node.canonical
+  route_name: camp_schedule.registrations
+  weight: 30

@@ -1,0 +1,23 @@
+name: Summit
+description: 'Provides Summit content type and related configuration. '
+type: module
+core: 8.x
+dependencies:
+  - camp_core
+  - camp_schedule
+  - camp_sponsor
+  - camp_venue
+  - core
+  - daterange_compact
+  - datetime_range
+  - field
+  - field_group
+  - field_permissions
+  - menu_ui
+  - node
+  - path
+  - text
+  - user
+  - views
+version: 8.x-1.0
+package: Camp

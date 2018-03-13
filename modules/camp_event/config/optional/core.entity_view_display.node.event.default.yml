@@ -1,0 +1,99 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.event.field_date
+    - field.field.node.event.field_event_description
+    - field.field.node.event.field_event_more_info
+    - field.field.node.event.field_event_type
+    - field.field.node.event.field_event_url_more_info
+    - field.field.node.event.field_registration_limit
+    - field.field.node.event.field_sponsors
+    - field.field.node.event.field_stick_to_top_of_date
+    - field.field.node.event.field_stick_to_top_of_schedule
+    - field.field.node.event.field_venue
+    - node.type.event
+  module:
+    - datetime_range
+    - field_delimiter
+    - link
+    - text
+    - user
+id: node.event.default
+targetEntityType: node
+bundle: event
+mode: default
+content:
+  field_date:
+    weight: 2
+    label: visually_hidden
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_event_description:
+    weight: 0
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_event_more_info:
+    weight: 4
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_event_type:
+    weight: 1
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_event_url_more_info:
+    weight: 3
+    label: visually_hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_sponsors:
+    weight: 6
+    label: visually_hidden
+    settings:
+      view_mode: sponsor_logo
+      link: false
+    third_party_settings:
+      field_delimiter:
+        delimiter: ''
+    type: entity_reference_entity_view
+    region: content
+  field_venue:
+    weight: 5
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_add_to_schedule:
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_registration_limit: true
+  field_stick_to_top_of_date: true
+  field_stick_to_top_of_schedule: true
+  links: true

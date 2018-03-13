@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: day_of_week_short
+label: 'Day of Week Short'
+locked: false
+pattern: D

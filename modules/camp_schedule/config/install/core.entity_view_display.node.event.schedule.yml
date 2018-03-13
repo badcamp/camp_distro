@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.schedule
+    - field.field.node.event.field_event_description
+    - node.type.event
+  module:
+    - text
+    - user
+id: node.event.schedule
+targetEntityType: node
+bundle: event
+mode: schedule
+content:
+  field_event_description:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }

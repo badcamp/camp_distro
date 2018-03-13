@@ -1,0 +1,16 @@
+camp_schedule.scheduler:
+  js:
+    /libraries/moment/min/moment.min.js: {}
+    /libraries/fullcalendar/dist/fullcalendar.min.js: {}
+    /libraries/fullcalendar-scheduler/dist/scheduler.min.js: {}
+    js/camp_schedule.js: {}
+  css:
+    component:
+      /libraries/fullcalendar/dist/fullcalendar.min.css: {}
+      /libraries/fullcalendar-scheduler/dist/scheduler.min.css: {}
+  dependencies:
+    - core/jquery.once
+    - core/jquery.ui.draggable
+    - core/drupal
+    - core/drupalSettings
+    - core/underscore

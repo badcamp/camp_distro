@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies: {  }
+id: job_board_manager
+label: 'Job Board Manager'
+weight: -4
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'create job_posting content'
+  - 'delete any job_posting content'
+  - 'delete job_posting revisions'
+  - 'delete own job_posting content'
+  - 'edit any job_posting content'
+  - 'edit own job_posting content'
+  - 'revert job_posting revisions'
+  - 'view job_posting revisions'

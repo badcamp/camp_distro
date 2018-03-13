@@ -1,0 +1,32 @@
+langcode: en
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.session.field_date
+    - field.field.node.session.field_session_description
+    - field.field.node.session.field_session_track
+    - field.field.node.session.field_sponsors
+    - field.field.node.session.field_stick_to_top_of_date
+    - field.field.node.session.field_stick_to_top_of_schedule
+    - node.type.session
+  module:
+    - user
+id: node.session.teaser
+targetEntityType: node
+bundle: session
+mode: teaser
+content:
+  flag_add_to_schedule:
+    weight: 10
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_date: true
+  field_session_description: true
+  field_session_track: true
+  field_sponsors: true
+  field_stick_to_top_of_date: true
+  field_stick_to_top_of_schedule: true
