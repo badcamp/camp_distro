@@ -79,7 +79,7 @@ content:
     third_party_settings: {  }
   evaluation_form:
     type: webform_entity_reference_select
-    weight: 29
+    weight: 28
     settings:
       default_data: true
     third_party_settings: {  }

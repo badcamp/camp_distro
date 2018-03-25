@@ -10,9 +10,11 @@ third_party_settings:
     parent: ''
   camp_evaluations:
     enable: 1
-    form: ''
+    form: evaluation_form
     evaluator_same_page: 0
     evaluator_override_node: 0
+    same_page: 0
+    override_node: 0
 name: Session
 type: session
 description: '<em>Sessions</em> are talks given by individuals.'

@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_display.comment.comments.default
+    - core.entity_view_mode.node.full
     - field.field.node.session.evaluation_form
     - field.field.node.session.field_comments
     - field.field.node.session.field_date
@@ -26,10 +27,10 @@ dependencies:
     - text
     - user
     - video_embed_field
-id: node.session.default
+id: node.session.full
 targetEntityType: node
 bundle: session
-mode: default
+mode: full
 content:
   field_comments:
     weight: 10

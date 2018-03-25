@@ -1,11 +1,14 @@
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.training.field_comments
     - field.field.node.training.field_date
     - field.field.node.training.field_skill_level
     - field.field.node.training.field_sponsors
+    - field.field.node.training.field_stick_to_top_of_date
+    - field.field.node.training.field_stick_to_top_of_schedule
     - field.field.node.training.field_trainers
     - field.field.node.training.field_training_description
     - field.field.node.training.field_training_files
@@ -13,24 +16,44 @@ dependencies:
     - field.field.node.training.field_venue
     - node.type.training
   module:
+    - text
     - user
 id: node.training.teaser
 targetEntityType: node
 bundle: training
 mode: teaser
 content:
-  flag_add_to_schedule:
-    weight: 10
+  field_skill_level:
+    type: entity_reference_label
+    weight: 0
     region: content
-  links:
-    weight: 100
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_trainers:
+    type: entity_reference_label
+    weight: 1
     region: content
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_training_description:
+    type: text_default
+    weight: 2
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
 hidden:
+  field_comments: true
   field_date: true
-  field_skill_level: true
   field_sponsors: true
-  field_trainers: true
-  field_training_description: true
+  field_stick_to_top_of_date: true
+  field_stick_to_top_of_schedule: true
   field_training_files: true
   field_training_links: true
   field_venue: true
+  flag_add_to_schedule: true
+  links: true

@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_display.comment.comments.default
+    - core.entity_view_mode.node.full
     - field.field.node.training.field_comments
     - field.field.node.training.field_date
     - field.field.node.training.field_skill_level
@@ -22,10 +23,10 @@ dependencies:
     - link
     - text
     - user
-id: node.training.default
+id: node.training.full
 targetEntityType: node
 bundle: training
-mode: default
+mode: full
 content:
   field_comments:
     weight: 9
