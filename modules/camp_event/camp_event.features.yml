@@ -1,4 +1,1 @@
 bundle: camp
-excluded:
-  - flag.flag.add_to_schedule
-required: true

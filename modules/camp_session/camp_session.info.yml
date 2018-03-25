@@ -4,11 +4,14 @@ type: module
 core: 8.x
 package: Camp
 dependencies:
+  - camp_core
+  - camp_evaluations
   - camp_schedule
   - camp_session
   - camp_sponsor
   - camp_training
   - camp_venue
+  - comment
   - core
   - datetime_range
   - field
@@ -27,4 +30,6 @@ dependencies:
   - text
   - user
   - video_embed_field
+  - views
+  - webform
 version: 8.x-1.0

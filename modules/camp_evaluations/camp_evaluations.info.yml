@@ -1,0 +1,12 @@
+name: Evaluations
+description: 'Allow users to give feedback about different events.'
+type: module
+core: 8.x
+dependencies:
+  - field
+  - field_permissions
+  - node
+  - webform
+  - webform_node
+version: 8.x-1.0
+package: Camp

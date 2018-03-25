@@ -11,6 +11,8 @@ camp_schedule.scheduler:
   dependencies:
     - core/jquery.once
     - core/jquery.ui.draggable
+    - core/jquery.ui.droppable
     - core/drupal
     - core/drupalSettings
     - core/underscore
+    - core/drupal.dialog

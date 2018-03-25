@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.venues.field_capacity
     - field.field.taxonomy_term.venues.field_venue_directions_url
     - field.field.taxonomy_term.venues.field_venue_image
     - field.field.taxonomy_term.venues.field_venue_website
@@ -25,6 +26,13 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_capacity:
+    weight: 34
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
   field_venue_directions_url:
     weight: 32
     settings:

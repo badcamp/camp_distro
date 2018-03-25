@@ -1,0 +1,11 @@
+allow evaluate:
+  title: Allow Evaluate
+  description: Allow a user the ability to evaluate.
+
+review all evaluations:
+  title: Review all Evaluations
+  description: Allow a user to see all of the evaluations.
+
+review own evaluations:
+  title: Review own Evaluations
+  description: Allow a user to see only the evaluations for their content.

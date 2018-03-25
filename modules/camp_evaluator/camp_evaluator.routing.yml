@@ -1,8 +1,0 @@
-camp_evaluator.node_evaluation:
-  path: 'node/{node}/evaluate'
-  defaults:
-    _controller: '\Drupal\camp_evaluator\Controller\EvaluatorController::getNodeEvaluation'
-    _title_callback: '\Drupal\camp_evaluator\Controller\EvaluatorController::getNodeTitle'
-  requirements:
-    _custom_access: '\Drupal\camp_evaluator\Controller\EvaluatorController::getNodeAccess'
-    _entity_access: 'node.view'

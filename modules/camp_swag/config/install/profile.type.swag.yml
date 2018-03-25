@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies: {  }
+id: swag
+label: Swag
+registration: false
+multiple: false
+roles:
+  authenticated: authenticated
+  sponsor_manager: '0'
+  event_manager: '0'
+  session_manager: '0'
+  summit_manager: '0'
+  job_board_manager: '0'
+  blog_manager: '0'
+  blog_writer: '0'
+  financial_manager: '0'
+  financial_assistant: '0'
+  training_manager: '0'
+  volunteer: '0'
+  volunteer_manager: '0'
+  administrator: '0'
+weight: 0
+use_revisions: false
+description: ''

@@ -10,67 +10,65 @@
   Drupal.behaviors.scheduler = {
     attach: function (context, settings) {
 
-      /*
-      $('#calendar').fullCalendar({
-        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
-        defaultView: 'agendaDay',
-        defaultDate: '2018-02-07',
-        editable: true,
-        selectable: true,
-        eventLimit: true, // allow "more" link when too many events
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'agendaDay,agendaTwoDay,agendaWeek,month'
-        },
-        views: {
-          agendaTwoDay: {
-            type: 'agenda',
-            duration: { days: 2 },
+      function getCsrfToken(callback) {
+        jQuery
+            .get(Drupal.url('rest/session/token'))
+            .done(function (data) {
+              var csrfToken = data;
+              callback(csrfToken);
+            });
+      }
 
-            // views that are more than a day will NOT do this behavior by default
-            // so, we need to explicitly enable it
-            groupByResource: true
-
-            //// uncomment this line to group by day FIRST with resources underneath
-            //groupByDateAndResource: true
+      function patchNode(csrfToken, id, node){
+        $.ajax({
+          url: "/node/" + id + '?_format=json',
+          type: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-Token': csrfToken
+          },
+          data: JSON.stringify(node),
+          success: function(data, textStatus, jQxhr) {
+            console.log('success', data, textStatus, jQxhr)
+          },
+          error: function( jqXhr, textStatus, errorThrown ){
+            console.log( errorThrown );
           }
-        },
+        });
+      }
 
-        //// uncomment this line to hide the all-day slot
-        //allDaySlot: false,
+      function runPatch(event) {
+        getCsrfToken(function (csrfToken) {
+          var newNode = {
+            type: [
+              { target_id: event.bundle }
+            ],
+            field_venue: [
+              { target_id: event.resourceId }
+            ],
+            field_date: [
+              {
+                value: event.start.toISOString(false),
+                end_value: event.end.toISOString(false)
+              }
+            ]
+          };
+          patchNode(csrfToken, event.id, newNode);
+        });
+      }
 
-        resources: [
-          { id: 'a', title: 'Room A' },
-          { id: 'b', title: 'Room B', eventColor: 'green' },
-          { id: 'c', title: 'Room C', eventColor: 'orange' },
-          { id: 'd', title: 'Room D', eventColor: 'red' }
-        ],
-        events: [
-          { id: '1', resourceId: 'a', start: '2018-02-06', end: '2018-02-08', title: 'event 1' },
-          { id: '2', resourceId: 'a', start: '2018-02-07T09:00:00', end: '2018-02-07T14:00:00', title: 'event 2' },
-          { id: '3', resourceId: 'b', start: '2018-02-07T12:00:00', end: '2018-02-08T06:00:00', title: 'event 3' },
-          { id: '4', resourceId: 'c', start: '2018-02-07T07:30:00', end: '2018-02-07T09:30:00', title: 'event 4' },
-          { id: '5', resourceId: 'd', start: '2018-02-07T10:00:00', end: '2018-02-07T15:00:00', title: 'event 5' }
-        ],
-
-        select: function(start, end, jsEvent, view, resource) {
-          console.log(
-              'select',
-              start.format(),
-              end.format(),
-              resource ? resource.id : '(no resource)'
-          );
-        },
-        dayClick: function(date, jsEvent, view, resource) {
-          console.log(
-              'dayClick',
-              date.format(),
-              resource ? resource.id : '(no resource)'
-          );
-        }
-      });
-      */
+      function runPatchRemove(event) {
+        getCsrfToken(function (csrfToken) {
+          var newNode = {
+            type: [
+              { target_id: event.type }
+            ],
+            field_venue: [],
+            field_date: []
+          };
+          patchNode(csrfToken, event.id, newNode);
+        });
+      }
 
       /* initialize the external events
 -----------------------------------------------------------------*/
@@ -80,7 +78,11 @@
         // store data so the calendar knows to render an event upon drop
         $(this).data('event', {
           title: $.trim($(this).text()), // use the element's text as the event title
-          stick: true // maintain when user navigates (see docs on the renderEvent method)
+          stick: true, // maintain when user navigates (see docs on the renderEvent method)
+          bundle: $(this).data('bundle'),
+          entity: $(this).data('entity'),
+          duration: '00:15',
+          id: $(this).data('nid')
         });
 
         // make the event draggable using jQuery UI
@@ -98,30 +100,73 @@
 
       $('#calendar').fullCalendar({
         now: '2018-02-07',
-        editable: false, // enable draggable events
+        schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+        editable: true, // enable draggable events
         droppable: true, // this allows things to be dropped onto the calendar
+        dropAccept: '#external-events .fc-event',
         eventOverlap: false,
         aspectRatio: 1.8,
-        scrollTime: '00:00', // undo default 6am scrollTime
+        scrollTime: '06:00', // undo default 6am scrollTime
         slotDuration: '00:15:00',
         header: {
           left: 'today prev,next',
-          center: 'title'
+          center: 'title',
+          right: 'agendaDay,agendaWeek'
         },
-        defaultView: 'agendaDay',
+        resourceColumns: [
+          {
+            labelText: 'Venue',
+            field: 'title'
+          },
+          {
+            labelText: 'Capacity',
+            field: 'capacity'
+          }
+        ],
+        defaultView: 'timelineDay',
         allDaySlot: false,
         groupByResource: true,
         resources: settings.camp_schedule.venues,
         events: settings.camp_schedule.events,
         drop: function(date, jsEvent, ui, resourceId) {
-          console.log('drop', date.format(), resourceId);
+          console.log('drop', [jsEvent, ui, date, date.format(), resourceId]);
           $(this).remove();
         },
         eventReceive: function(event) { // called when a proper external event is dropped
           console.log('eventReceive', event);
+          runPatch(event);
         },
         eventDrop: function(event) { // called when an event (already on the calendar) is moved
           console.log('eventDrop', event);
+          runPatch(event);
+        },
+        eventResize: function(event) {
+          console.log('eventResize', event);
+          runPatch(event);
+        },
+        eventClick: function(calEvent, jsEvent, view) {
+
+        },
+        eventDragStop: function(event,jsEvent) {
+
+          var trashEl = jQuery('#unschedule');
+          var ofs = trashEl.offset();
+
+          var x1 = ofs.left;
+          var x2 = ofs.left + trashEl.outerWidth(true);
+          var y1 = ofs.top;
+          var y2 = ofs.top + trashEl.outerHeight(true);
+
+          if (jsEvent.pageX >= x1 && jsEvent.pageX<= x2 &&
+              jsEvent.pageY >= y1 && jsEvent.pageY <= y2) {
+
+            var ask = confirm(Drupal.t('Remove "!title" from calendar?', {'!title': event.title}));
+            if(ask == true) {
+              $('#calendar').fullCalendar('removeEvents', event.id);
+              console.log(event);
+              runPatchRemove(event);
+            }
+          }
         }
       });
     }

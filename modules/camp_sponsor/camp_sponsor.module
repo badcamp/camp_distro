@@ -40,3 +40,26 @@ function camp_sponsor_node_grants(AccountInterface $account, $op) {
 
   return $grants;
 }
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function camp_sponsor_entity_extra_field_info() {
+  $extra = [];
+
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if($moduleHandler->moduleExists('camp_job_posting')) {
+    $extra['node']['sponsor']['display']['jobs'] = [
+      'title' => t('Job Postings'),
+      'description' => t('Contains all of the ')
+    ];
+  }
+
+  $extra['node']['sponsor']['display']['events'] = [
+    'title' => t('Events'),
+    'description' => t('Contains all of the events scheduled.')
+  ];
+
+  return $extra;
+}

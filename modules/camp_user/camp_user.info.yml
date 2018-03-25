@@ -1,5 +1,5 @@
 name: User
-description: 'Provide User related configuration.'
+description: 'Provide profiles for people who register for the camp.'
 type: module
 core: 8.x
 package: Camp

@@ -8,6 +8,7 @@ version: 8.x-1.0
 dependencies:
   - block
   - block_content
+  - camp_core
   - ckeditor
   - daterange_compact
   - datetime_range

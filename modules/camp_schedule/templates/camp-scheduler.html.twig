@@ -1,13 +1,8 @@
 <style>
-
-    #wrap {
-        width: 1100px;
-        margin: 0 auto;
-    }
-
     #external-events {
         float: left;
-        width: 150px;
+        min-width: 150px;
+        width: 25%;
         padding: 0 10px;
         border: 1px solid #ccc;
         background: #eee;
@@ -38,16 +33,41 @@
 
     #calendar {
         float: right;
-        width: 900px;
+        width: 70%;
+    }
+
+    #unschedule {
+        height: 50px;
+        border: 1px solid black;
+        margin: 1em 0;
+        background: white;
+        border-radius:  5px;
+    }
+
+    #unschedule p{
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .individual-event{
+        padding: 5px;
+        background: #d2d2d2;
+        color: black;
+        border: 1px solid black;
     }
 
 </style>
 <div id='wrap'>
     <div id='external-events'>
         <h4>Events</h4>
+        <div id="unschedule">
+            <p>Drag Here to Unschedule</p>
+        </div>
+        <div id="unscheduled-items">
         {% for event in events %}
-            <div class='fc-event' data-nid="{{ event.id }}">{{ event.title.0.value }}</div>
+            <div class='fc-event individual-event' data-nid="{{ event.id }}" data-entity="{{ event.getEntityTypeId }}" data-bundle="{{ event.bundle }}">{{ event.title.0.value }} ( {{ event.bundle | capitalize }} )</div>
         {%  endfor %}
+        </div>
     </div>
     <div id='calendar'></div>
     <div class="clearfix"></div>

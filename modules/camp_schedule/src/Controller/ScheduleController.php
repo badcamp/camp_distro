@@ -42,16 +42,7 @@ class ScheduleController extends ControllerBase {
   public function scheduleBuilder() {
     $build = [];
 
-    $bundles = $this->config('flag.flag.add_to_schedule')->get('bundles');
-
-    $query = $this->entityTypeManager->getStorage('node')->getQuery('AND');
-    $query->condition('type', $bundles, 'IN');
-    $query->condition('status', 1);
-    $query->notExists('field_venue');
-    $query->sort('title');
-    $entity_ids = $query->execute();
-
-    $events = Node::loadMultiple($entity_ids);
+    $events = $this->getCampEvents(FALSE);
     $build['content'] = [
       '#theme' => 'camp_scheduler',
       '#events' => $events
@@ -59,43 +50,54 @@ class ScheduleController extends ControllerBase {
 
     $build['content']['#attached']['library'][] = 'camp_schedule/camp_schedule.scheduler';
 
-    $tree = $this->getTree('venues');
-    $venues = $this->calendarRoomSettings($tree);
-
+    $venues = $this->getTree('venues');
     $build['content']['#attached']['drupalSettings']['camp_schedule']['venues'] = $venues;
 
-    $scheduled_events = [];
+    $scheduled_events = $this->getCampEvents(TRUE);
     $build['content']['#attached']['drupalSettings']['camp_schedule']['events'] = $scheduled_events;
-
 
     return $build;
   }
 
-  public function calendarRoomSettings($tree) {
-    $tmp = [];
-    foreach($tree AS $k => $v){
-      $item = [
-        'id' => $v->tid,
-        'title' => $v->name
-      ];
+  public function getCampEvents($scheduled = TRUE) {
+    $bundles = $this->config('flag.flag.add_to_schedule')->get('bundles');
+    $query = $this->entityTypeManager->getStorage('node')->getQuery('AND');
+    $query->condition('type', $bundles, 'IN');
+    $query->condition('status', 1);
 
-      if(isset($v->children)){
-        $item['children'] = [];
+    if(!$scheduled) {
+      $query->notExists('field_venue');
+      $query->notExists('field_date');
+    }else{
+      $query->exists('field_date');
+      $query->exists('field_venue');
+    }
+    $query->sort('title');
+    $entity_ids = $query->execute();
 
-        foreach($v->children AS $kc => $vc){
-          $item['children'][] = [
-            'id' => $vc->tid,
-            'title' => $vc->name
-          ];
-        }
+    $events = Node::loadMultiple($entity_ids);
+
+    if($scheduled) {
+      $eventList = [];
+      foreach ($events AS $event) {
+        $dates = $event->get('field_date')->getValue();
+        $venues = $event->get('field_venue')->getValue();
+        $date = array_shift($dates);
+        $venue = array_shift($venues);
+        $eventList[] = [
+          'id' => $event->id(),
+          'title' => $event->getTitle(),
+          'start' => $date['value'],
+          'end' => $date['end_value'],
+          'resourceId' => $venue['target_id'],
+          'type' => $event->bundle()
+        ];
       }
-
-      $tmp[] = $item;
+      return $eventList;
     }
 
-    return $tmp;
+    return $events;
   }
-
 
   /**
    * Loads the tree of a vocabulary.
@@ -126,9 +128,16 @@ class ScheduleController extends ControllerBase {
     if ($object->depth != 0) {
       return;
     }
-    $tree[$object->tid] = $object;
-    $tree[$object->tid]->children = [];
-    $object_children = &$tree[$object->tid]->children;
+    $term = $this->entityTypeManager->getStorage('taxonomy_term')->load($object->tid);
+    $tmpObject = [];
+    $tmpObject['id'] = $object->tid;
+    $tmpObject['title'] = $object->name;
+    $tmpObject['children'] = [];
+    $capacity = $term->get('field_capacity')->getValue();
+    $tmpObject['capacity'] = array_shift($capacity)['value'];
+    $tree[] = &$tmpObject;
+
+    $object_children = &$tmpObject['children'];
 
     $children = $this->entityTypeManager->getStorage('taxonomy_term')->loadChildren($object->tid);
     if (!$children) {
@@ -144,5 +153,6 @@ class ScheduleController extends ControllerBase {
         }
       }
     }
+
   }
 }

@@ -108,3 +108,4 @@ content:
 hidden:
   field_user_public_schedule: true
   member_for: true
+  profile_swag: true
