@@ -73,12 +73,13 @@ jobs:
             sudo apt-get update >/dev/null;
             sudo apt-get -y --force-yes --no-install-recommends install >/dev/null \
               $buildDeps \
+              apt-utils \
               libfreetype6 \
               libgpgme11 \
               libicu52 \
               libjpeg62-turbo \
-              libmagickcore-6.q16-2 \
-              libmagickwand-6.q16-2 \
+              libmagickwand-dev\
+              libmagickcore-dev \
               libmcrypt4 \
               libmhash2 \
               libpng12-0 \
