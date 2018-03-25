@@ -1,0 +1,134 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.full
+    - field.field.user.user.field_user_bio
+    - field.field.user.user.field_user_first_name
+    - field.field.user.user.field_user_last_name
+    - field.field.user.user.field_user_organization
+    - field.field.user.user.field_user_organization_website
+    - field.field.user.user.field_user_photo
+    - field.field.user.user.field_user_public_schedule
+    - field.field.user.user.field_user_social_profile_links
+    - field.field.user.user.field_user_title
+    - image.style.member_image
+  module:
+    - field_group
+    - image
+    - link
+    - social_media_links_field
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_misc:
+      children:
+        - flag_check_in
+        - flag_featured_attendee
+      parent_name: ''
+      weight: 0
+      format_type: html_element
+      format_settings:
+        id: ''
+        classes: ''
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Misc
+      region: content
+id: user.user.full
+targetEntityType: user
+bundle: user
+mode: full
+content:
+  field_user_bio:
+    weight: 7
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_user_first_name:
+    weight: 1
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_user_last_name:
+    weight: 2
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_user_organization:
+    weight: 5
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_user_organization_website:
+    weight: 6
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_user_photo:
+    weight: 3
+    label: visually_hidden
+    settings:
+      image_style: member_image
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_user_social_profile_links:
+    weight: 8
+    label: hidden
+    settings:
+      appearance:
+        orientation: h
+        show_name: 0
+      link_attributes:
+        target: _blank
+        rel: nofollow
+    third_party_settings: {  }
+    type: social_media_links_field_default
+    region: content
+  field_user_title:
+    weight: 4
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  flag_check_in:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_featured_attendee:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_user_public_schedule: true
+  member_for: true
+  profile_swag: true
