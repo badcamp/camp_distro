@@ -3,6 +3,7 @@
   "description": "Easily create a website for a Drupal camp in a short amount of time.",
   "type": "drupal-profile",
   "license": "GPL-2.0+",
+  "minimum-stability": "dev",
   "authors": [
     {
       "name": "Sean Dietrich <sean.e.dietrich@gmail.com>",
