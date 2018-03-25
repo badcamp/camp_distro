@@ -56,30 +56,34 @@ jobs:
       - run:
           name: Install Server Tools
           command: |
-            sudo apt install mysql-client jq imagemagick;
-            buildDeps=" \
+            sudo apt-get install mysql-client jq imagemagick;
+            sudo apt-get update >/dev/null;
+            sudo apt-get --force-yes --install-recommends install \
               g++ \
               libfreetype6-dev \
               libgpgme11-dev \
               libicu-dev \
+              libglib2.0-0=2.42.1-1+b1 \
+              libglib2.0-bin=2.42.1-1+b1 \
               libjpeg62-turbo-dev \
+              libglib2.0-dev \
+              librsvg2-dev \
+              libmagickcore-6.q16-dev \
+              libmagickwand-6.q16-dev \
               libmagickcore-dev \
               libmagickwand-dev \
               libmcrypt-dev \
               libmhash-dev \
               libpng12-dev \
               libxslt1-dev \
-              zlib1g-dev";
-            sudo apt-get update >/dev/null;
-            sudo apt-get -y --force-yes --no-install-recommends install >/dev/null \
-              $buildDeps \
+              zlib1g-dev \
               apt-utils \
               libfreetype6 \
               libgpgme11 \
               libicu52 \
               libjpeg62-turbo \
-              libmagickwand-dev\
-              libmagickcore-dev \
+              libmagickcore-6.q16-2 \
+              libmagickwand-6.q16-2 \
               libmcrypt4 \
               libmhash2 \
               libpng12-0 \
