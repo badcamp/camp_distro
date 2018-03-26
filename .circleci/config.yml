@@ -51,7 +51,7 @@ jobs:
             sudo a2enmod rewrite;
             sudo apache2ctl -M;
             sudo cp camp/.circleci/apache.conf /etc/apache2/sites-available/000-default.conf;
-            echo 'memory_limit = 512M' | sudo tee -a ${PHP_INI_PATH}/drupal.php.ini;
+            echo 'memory_limit = 1024M' | sudo tee -a ${PHP_INI_PATH}/drupal.php.ini;
             echo 'max_execution_time = 120' | sudo tee -a ${PHP_INI_PATH}/drupal.php.ini;
             echo 'sendmail_path = /bin/true' | sudo tee -a ${PHP_INI_PATH}/drupal.php.ini;
       - run:
