@@ -15,44 +15,14 @@ dependencies:
     - field.field.user.user.field_user_title
   module:
     - image
-    - link
-    - social_media_links_field
-    - text
     - user
 id: user.user.default
 targetEntityType: user
 bundle: user
 mode: default
 content:
-  field_i_am_interested_in_drupal_:
-    weight: 10
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-    region: content
-  field_i_am_interested_in_hearing:
-    weight: 11
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-    region: content
-  field_user_bio:
-    weight: 4
-    label: visually_hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
   field_user_first_name:
-    weight: 2
+    weight: 1
     label: visually_hidden
     settings:
       link_to_entity: false
@@ -60,74 +30,32 @@ content:
     type: string
     region: content
   field_user_last_name:
-    weight: 3
+    weight: 2
     label: visually_hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  field_user_organization:
-    weight: 7
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_user_organization_website:
-    weight: 8
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-    region: content
   field_user_photo:
-    weight: 5
+    type: image
+    weight: 0
+    region: content
     label: visually_hidden
     settings:
       image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-    region: content
-  field_user_social_profile_links:
-    weight: 9
-    label: hidden
-    settings:
-      appearance:
-        orientation: h
-        show_name: 0
-      link_attributes:
-        target: _blank
-        rel: nofollow
-    third_party_settings: {  }
-    type: social_media_links_field_default
-    region: content
-  field_user_title:
-    weight: 6
-    label: visually_hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  flag_check_in:
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-  flag_featured_attendee:
-    weight: 1
-    region: content
-    settings: {  }
+      image_link: content
     third_party_settings: {  }
 hidden:
+  field_i_am_interested_in_drupal_: true
+  field_i_am_interested_in_hearing: true
+  field_user_bio: true
+  field_user_organization: true
+  field_user_organization_website: true
   field_user_public_schedule: true
+  field_user_social_profile_links: true
+  field_user_title: true
+  flag_check_in: true
+  flag_featured_attendee: true
   member_for: true
   profile_swag: true
