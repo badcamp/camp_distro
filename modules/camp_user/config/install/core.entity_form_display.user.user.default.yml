@@ -2,6 +2,8 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.field_i_am_interested_in_drupal_
+    - field.field.user.user.field_i_am_interested_in_hearing
     - field.field.user.user.field_user_bio
     - field.field.user.user.field_user_first_name
     - field.field.user.user.field_user_last_name
@@ -82,6 +84,20 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_i_am_interested_in_drupal_:
+    weight: 15
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_i_am_interested_in_hearing:
+    weight: 16
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_user_bio:
     type: text_textarea
     weight: 13

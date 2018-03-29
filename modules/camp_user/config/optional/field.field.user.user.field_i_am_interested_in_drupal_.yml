@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_i_am_interested_in_drupal_
+  module:
+    - user
+id: user.user.field_i_am_interested_in_drupal_
+field_name: field_i_am_interested_in_drupal_
+entity_type: user
+bundle: user
+label: 'I am interested in Drupal Jobs'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

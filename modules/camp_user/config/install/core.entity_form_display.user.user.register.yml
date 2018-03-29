@@ -3,6 +3,8 @@ status: true
 dependencies:
   config:
     - core.entity_form_mode.user.register
+    - field.field.user.user.field_i_am_interested_in_drupal_
+    - field.field.user.user.field_i_am_interested_in_hearing
     - field.field.user.user.field_user_bio
     - field.field.user.user.field_user_first_name
     - field.field.user.user.field_user_last_name
@@ -53,6 +55,20 @@ content:
     weight: 2
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_i_am_interested_in_drupal_:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_i_am_interested_in_hearing:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   field_user_first_name:
     type: string_textfield

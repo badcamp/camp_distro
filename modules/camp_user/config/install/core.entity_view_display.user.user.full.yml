@@ -3,6 +3,8 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.user.full
+    - field.field.user.user.field_i_am_interested_in_drupal_
+    - field.field.user.user.field_i_am_interested_in_hearing
     - field.field.user.user.field_user_bio
     - field.field.user.user.field_user_first_name
     - field.field.user.user.field_user_last_name
@@ -129,6 +131,8 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_i_am_interested_in_drupal_: true
+  field_i_am_interested_in_hearing: true
   field_user_public_schedule: true
   member_for: true
   profile_swag: true
