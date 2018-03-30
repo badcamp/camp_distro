@@ -1,4 +1,5 @@
 name: Comments
+description: "Allow users to make comments on different pieces of content."
 type: module
 core: 8.x
 dependencies:
