@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.event.field_comments
     - field.field.node.event.field_date
     - field.field.node.event.field_event_description
     - field.field.node.event.field_event_more_info
@@ -14,7 +13,6 @@ dependencies:
     - field.field.node.event.field_venue
     - node.type.event
   module:
-    - comment
     - datetime_range
     - field_delimiter
     - link
@@ -25,15 +23,6 @@ targetEntityType: node
 bundle: event
 mode: default
 content:
-  field_comments:
-    weight: 8
-    label: above
-    settings:
-      view_mode: default
-      pager_id: 0
-    third_party_settings: {  }
-    type: comment_default
-    region: content
   field_date:
     weight: 2
     label: visually_hidden

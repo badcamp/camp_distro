@@ -33,3 +33,4 @@ dependencies:
   - tour
   - user
   - views
+  - webform

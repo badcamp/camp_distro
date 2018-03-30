@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.summit.field_comments
     - field.field.node.summit.field_date
     - field.field.node.summit.field_sponsors
     - field.field.node.summit.field_stick_to_top_of_date
@@ -12,7 +11,6 @@ dependencies:
     - field.field.node.summit.field_venue
     - node.type.summit
   module:
-    - comment
     - datetime_range
     - field_group
     - path
@@ -63,12 +61,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_comments:
-    weight: 26
-    settings: {  }
-    third_party_settings: {  }
-    type: comment_default
-    region: content
   field_date:
     weight: 4
     settings: {  }

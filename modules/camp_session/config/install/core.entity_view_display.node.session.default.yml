@@ -2,9 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_display.comment.comments.default
     - field.field.node.session.evaluation_form
-    - field.field.node.session.field_comments
     - field.field.node.session.field_date
     - field.field.node.session.field_session_description
     - field.field.node.session.field_session_files
@@ -19,7 +17,6 @@ dependencies:
     - field.field.node.session.field_venue
     - node.type.session
   module:
-    - comment
     - datetime_range
     - field_delimiter
     - file
@@ -31,15 +28,6 @@ targetEntityType: node
 bundle: session
 mode: default
 content:
-  field_comments:
-    weight: 10
-    label: above
-    settings:
-      view_mode: default
-      pager_id: 0
-    third_party_settings: {  }
-    type: comment_default
-    region: content
   field_date:
     weight: 0
     label: hidden

@@ -1,0 +1,9 @@
+name: Comments
+type: module
+core: 8.x
+dependencies:
+  - comment
+  - field
+  - text
+version: 8.x-1.0
+package: Camp

@@ -1,1 +1,14 @@
 bundle: camp
+excluded:
+  - comment.type.comments
+  - field.field.comment.comments.comment_body
+required:
+  - field.storage.node.field_date
+  - field.storage.node.field_sponsors
+  - node.type.webform
+  - core.entity_form_display.node.webform.default
+  - core.entity_view_display.node.webform.default
+  - core.entity_view_display.node.webform.teaser
+  - field.field.node.webform.body
+  - webform.webform.contact
+  - webform.webform_options.country_names

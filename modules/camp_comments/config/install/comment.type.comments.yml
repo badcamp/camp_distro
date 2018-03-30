@@ -4,4 +4,4 @@ dependencies: {  }
 id: comments
 label: Comments
 target_entity_type_id: node
-description: 'Used to comment on the different talks.'
+description: 'General display for comments'
