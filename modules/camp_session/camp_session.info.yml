@@ -12,7 +12,6 @@ dependencies:
   - camp_training
   - camp_venue
   - comment
-  - core
   - datetime_range
   - field
   - field_delimiter

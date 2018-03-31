@@ -10,7 +10,6 @@ dependencies:
   - camp_summit
   - camp_training
   - contextual
-  - core
   - daterange_compact
   - field
   - file
