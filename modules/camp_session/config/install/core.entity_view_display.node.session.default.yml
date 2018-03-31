@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.session.evaluation_form
     - field.field.node.session.field_date
     - field.field.node.session.field_session_description
     - field.field.node.session.field_session_files
@@ -11,10 +10,6 @@ dependencies:
     - field.field.node.session.field_session_video
     - field.field.node.session.field_skill_level
     - field.field.node.session.field_speakers
-    - field.field.node.session.field_sponsors
-    - field.field.node.session.field_stick_to_top_of_date
-    - field.field.node.session.field_stick_to_top_of_schedule
-    - field.field.node.session.field_venue
     - node.type.session
   module:
     - datetime_range

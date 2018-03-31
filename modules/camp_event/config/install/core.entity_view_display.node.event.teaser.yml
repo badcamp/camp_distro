@@ -6,9 +6,6 @@ dependencies:
     - field.field.node.event.field_date
     - field.field.node.event.field_event_description
     - field.field.node.event.field_event_type
-    - field.field.node.event.field_sponsors
-    - field.field.node.event.field_stick_to_top_of_date
-    - field.field.node.event.field_stick_to_top_of_schedule
     - node.type.event
   module:
     - user

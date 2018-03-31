@@ -3,12 +3,8 @@ status: true
 dependencies:
   config:
     - field.field.node.summit.field_date
-    - field.field.node.summit.field_sponsors
-    - field.field.node.summit.field_stick_to_top_of_date
-    - field.field.node.summit.field_stick_to_top_of_schedule
     - field.field.node.summit.field_summit_description
     - field.field.node.summit.field_summit_leaders
-    - field.field.node.summit.field_venue
     - node.type.summit
   module:
     - datetime_range
