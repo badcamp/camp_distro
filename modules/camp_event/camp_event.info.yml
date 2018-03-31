@@ -5,9 +5,6 @@ core: 8.x
 package: Camp
 dependencies:
   - camp_core
-  - camp_schedule
-  - camp_sponsor
-  - camp_venue
   - comment
   - daterange_compact
   - datetime_range
