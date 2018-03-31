@@ -14,6 +14,7 @@ dependencies:
   - login_destination
   - pathauto
   - social_media_links_field
+  - system
   - text
   - user
   - views

@@ -6,6 +6,7 @@ dependencies:
   - flag
   - honeypot
   - image
+  - system
   - user
   - views
   - webform
