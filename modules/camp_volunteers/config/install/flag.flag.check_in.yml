@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+id: check_in
+label: 'Check In'
+bundles: {  }
+entity_type: user
+global: true
+weight: 0
+flag_short: 'Check In'
+flag_long: ''
+flag_message: ''
+unflag_short: 'Uncheck In'
+unflag_long: ''
+unflag_message: ''
+unflag_denied_text: ''
+flag_type: 'entity:user'
+link_type: ajax_link
+flagTypeConfig:
+  show_in_links:
+    compact: compact
+  show_as_field: true
+  show_on_form: false
+  show_contextual_link: false
+  extra_permissions:
+    owner: '0'
+  show_on_profile: true
+linkTypeConfig: {  }

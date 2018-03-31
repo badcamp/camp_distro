@@ -51,28 +51,34 @@ jobs:
             sudo a2enmod rewrite;
             sudo apache2ctl -M;
             sudo cp camp/.circleci/apache.conf /etc/apache2/sites-available/000-default.conf;
+            echo 'memory_limit = 2G' | sudo tee -a ${PHP_INI_PATH}/drupal.php.ini;
             echo 'max_execution_time = 120' | sudo tee -a ${PHP_INI_PATH}/drupal.php.ini;
             echo 'sendmail_path = /bin/true' | sudo tee -a ${PHP_INI_PATH}/drupal.php.ini;
       - run:
           name: Install Server Tools
           command: |
-            sudo apt install mysql-client jq imagemagick;
-            buildDeps=" \
+            sudo apt-get install mysql-client jq imagemagick;
+            sudo apt-get update >/dev/null;
+            sudo apt-get --force-yes --install-recommends install \
               g++ \
               libfreetype6-dev \
               libgpgme11-dev \
               libicu-dev \
+              libglib2.0-0=2.42.1-1+b1 \
+              libglib2.0-bin=2.42.1-1+b1 \
               libjpeg62-turbo-dev \
+              libglib2.0-dev \
+              librsvg2-dev \
+              libmagickcore-6.q16-dev \
+              libmagickwand-6.q16-dev \
               libmagickcore-dev \
               libmagickwand-dev \
               libmcrypt-dev \
               libmhash-dev \
               libpng12-dev \
               libxslt1-dev \
-              zlib1g-dev";
-            sudo apt-get update >/dev/null;
-            sudo apt-get -y --force-yes --no-install-recommends install >/dev/null \
-              $buildDeps \
+              zlib1g-dev \
+              apt-utils \
               libfreetype6 \
               libgpgme11 \
               libicu52 \

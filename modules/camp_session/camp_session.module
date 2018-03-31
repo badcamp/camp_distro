@@ -1,0 +1,95 @@
+<?php
+
+use Drupal\node\NodeInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Entity\EntityInterface;
+
+
+/**
+ * Implements hook_node_access_records().
+ */
+function camp_session_node_access_records(NodeInterface $node) {
+  $grants = [];
+
+  if($node->bundle() == 'session') {
+
+    $ids = [];
+
+    foreach ($node->get('field_speakers')->getValue() AS $id) {
+      $grants[] = [
+        'realm' => 'session_speaker',
+        'gid' => $id['target_id'],
+        'grant_view' => 1,
+        'grant_update' => 1,
+        'grant_delete' => 0
+      ];
+    }
+  }
+
+  return $grants;
+}
+
+/**
+ * Implements hook_node_grants().
+ */
+function camp_session_node_grants(AccountInterface $account, $op) {
+  $grants = [];
+  if($account->isAuthenticated()){
+    $grants['session_speaker'] = array(
+      $account->id(),
+      1,
+      1,
+      0
+    );
+  }
+
+  return $grants;
+}
+
+/**
+ * Implements hook_mail().
+ */
+function camp_session_mail($key, &$message, $params) {
+  $config = \Drupal::config('camp_session.emails')->get($key);
+  if(!is_null($config) && $config['enabled']) {
+    $tokenService = \Drupal::token();
+    $replacements = [
+      'node' => $params['node'],
+      'user' => $params['user']
+    ];
+
+    $subject = $config['subject'];
+    $message['subject'] = $tokenService->replace($subject, $replacements);
+    $body = check_markup($config['value'], $config['format']);
+    $message['body'] = $tokenService->replace($body, $replacements);
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function camp_session_entity_insert(EntityInterface $entity) {
+  if($entity->getEntityType() == 'node' && $entity->bundle() == 'session') {
+    $user = \Drupal::currentUser();
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = 'camp_session';
+    $key = 'session_submitted'; // Replace with Your key
+    $to = $user->getEmail();
+    $langcode = $user->getPreferredLangcode();
+    $send = true;
+    $params['node'] = $entity;
+    $params['user'] = $user;
+
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+    if ($result['result'] != true) {
+      $message = t('There was a problem sending your email notification to @email.', array('@email' => $to));
+      drupal_set_message($message, 'error');
+      \Drupal::logger('mail-log')->error($message);
+      return;
+    }
+
+    $message = t('An email notification has been sent to @email ', array('@email' => $to));
+    drupal_set_message($message);
+    \Drupal::logger('mail-log')->notice($message);
+  }
+}

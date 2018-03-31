@@ -1,0 +1,173 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_i_am_interested_in_drupal_
+    - field.field.user.user.field_i_am_interested_in_hearing
+    - field.field.user.user.field_user_bio
+    - field.field.user.user.field_user_first_name
+    - field.field.user.user.field_user_last_name
+    - field.field.user.user.field_user_organization
+    - field.field.user.user.field_user_organization_website
+    - field.field.user.user.field_user_photo
+    - field.field.user.user.field_user_public_schedule
+    - field.field.user.user.field_user_social_profile_links
+    - field.field.user.user.field_user_title
+    - image.style.thumbnail
+  module:
+    - field_group
+    - image
+    - link
+    - social_media_links_field
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_account_information:
+      children:
+        - account
+        - field_user_public_schedule
+      parent_name: group_tabs
+      weight: 2
+      format_type: tab
+      format_settings:
+        label: 'Account Info'
+        formatter: closed
+        description: ''
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Account Info'
+      region: content
+    group_personal_information:
+      children:
+        - field_user_first_name
+        - field_user_last_name
+        - field_user_photo
+        - field_user_title
+        - field_user_organization
+        - field_user_organization_website
+        - field_user_bio
+        - field_user_social_profile_links
+      parent_name: group_tabs
+      weight: 1
+      format_type: tab
+      format_settings:
+        label: 'Personal Info'
+        formatter: closed
+        description: ''
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Personal Info'
+      region: content
+    group_tabs:
+      children:
+        - group_personal_information
+        - group_account_information
+      parent_name: ''
+      weight: 0
+      format_type: tabs
+      format_settings:
+        id: ''
+        classes: ''
+        direction: horizontal
+      label: Tabs
+      region: content
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  account:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_i_am_interested_in_drupal_:
+    weight: 15
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_i_am_interested_in_hearing:
+    weight: 16
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_user_bio:
+    type: text_textarea
+    weight: 13
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_user_first_name:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_user_last_name:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_user_organization:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_user_organization_website:
+    type: link_default
+    weight: 12
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: '{{ content.field_user_organization }}'
+    third_party_settings: {  }
+  field_user_photo:
+    type: image_image
+    weight: 9
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_user_public_schedule:
+    weight: 5
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_user_social_profile_links:
+    type: social_media_links_field_default
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_user_title:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  language: true
+  path: true
+  timezone: true

@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_training_files
+    - node.type.training
+  module:
+    - file
+id: node.training.field_training_files
+field_name: field_training_files
+entity_type: node
+bundle: training
+label: Files
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'training/documents/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf doc docx rtf md zip tar.gz tar'
+  max_filesize: ''
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

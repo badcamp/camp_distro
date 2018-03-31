@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.profile.swag.field_swag_tshirt_size
+    - profile.type.swag
+  module:
+    - options
+id: profile.swag.default
+targetEntityType: profile
+bundle: swag
+mode: default
+content:
+  field_swag_tshirt_size:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden: {  }

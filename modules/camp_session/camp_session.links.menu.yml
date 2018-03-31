@@ -1,0 +1,4 @@
+camp_session.session_emails:
+  title: 'Session Emails'
+  parent: camp_core.config
+  route_name: camp_session.session_emails

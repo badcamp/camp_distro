@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: date_only
+label: 'Date Only'
+locked: false
+pattern: 'D M, d'

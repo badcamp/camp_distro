@@ -1,0 +1,10 @@
+camp_blog.admin:
+  route_name: node.add
+  title: 'Add Blog Post'
+  route_parameters:
+    node_type: blog
+  options:
+    query:
+      destination: /admin/content/camp/blog
+  appears_on:
+    - 'view.blog_content.admin'

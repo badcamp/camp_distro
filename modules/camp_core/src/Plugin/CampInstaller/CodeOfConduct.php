@@ -32,16 +32,32 @@ class CodeOfConduct extends CampInstallerBase {
     user_role_grant_permissions(RoleInterface::ANONYMOUS_ID, ['use text format full_html']);
 
     $config = \Drupal::config('camp_core.code_of_conduct');
-    $text = $config->get('value');
-    $format_id = $config->get('format');
+    $enabled = $config->get('enabled');
+    $text = $config->get('message')['value'];
+    $format_id = $config->get('message')['format'];
+
+    $form['enable'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t("I want to have a code of conduct")
+    ];
 
     $form['text'] = [
-      '#markup' => check_markup($text, $format_id)
+      '#markup' => check_markup($text, $format_id),
+      '#states' => [
+        'visible' => [
+          ':input[name="code_of_conduct[enable]"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
 
     $form['change'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t("I want to change the current code of conduct")
+      '#title' => $this->t("I want to change the current code of conduct"),
+      '#states' => [
+        'visible' => [
+          ':input[name="code_of_conduct[enable]"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
 
     $form['change_text_wrapper'] = [
@@ -50,6 +66,7 @@ class CodeOfConduct extends CampInstallerBase {
       '#states' => [
         'visible' => [
           ':input[name="code_of_conduct[change]"]' => ['checked' => TRUE],
+          ':input[name="code_of_conduct[enable]"]' => ['checked' => TRUE],
         ],
       ],
     ];
@@ -79,20 +96,25 @@ class CodeOfConduct extends CampInstallerBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // TODO: Implement submitForm() method.
-    $change = $form_state->getValue('code_of_conduct')['change'];
-    if($change){
-      $text = $form_state->getValue('code_of_conduct')['change_text_wrapper']['change_text'];
+    $enable = $form_state->getValue('code_of_conduct')['enable'];
+    $config = \Drupal::configFactory()->getEditable('camp_core.code_of_conduct');
 
-      $config = \Drupal::configFactory()->getEditable('camp_core.code_of_conduct');
-      $config->set('value', $text['value'])
-              ->set('format', $text['format'])
-              ->save();
+    if($enable) {
+      $config->set('enable', $enable);
+      $change = $form_state->getValue('code_of_conduct')['change'];
+
+      if ($change) {
+        $text = $form_state->getValue('code_of_conduct')['change_text_wrapper']['change_text'];
+        $config->set('message', $text);
+      }
+
+      $config->save();
+
+      /**
+       * Remove access for Anon user's to access WYSIWYG
+       */
+      user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, ['use text format full_html']);
     }
-
-    /**
-     * Remove access for Anon user's to access WYSIWYG
-     */
-    user_role_revoke_permissions(RoleInterface::ANONYMOUS_ID, ['use text format full_html']);
   }
 
 }

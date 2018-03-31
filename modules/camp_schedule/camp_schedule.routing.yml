@@ -1,0 +1,34 @@
+camp_schedule.admin:
+  path: 'admin/config/camp/schedule'
+  defaults:
+    _form:  '\Drupal\camp_schedule\Form\ScheduleSettings'
+    _title: 'Schedule Settings'
+  requirements:
+    _permission: 'administer schedule settings'
+
+camp_schedule.schedule_display:
+  path: 'schedule/{date}'
+  defaults:
+    _controller: '\Drupal\camp_schedule\Controller\ScheduleDisplayController::scheduleDisplay'
+    _title: 'Schedule'
+    date: 'today'
+  requirements:
+    _permission: 'access content'
+
+camp_schedule.registrations:
+  path: 'node/{node}/registrations'
+  defaults:
+    _controller: '\Drupal\camp_schedule\Controller\RegistrationsController::getRegistrationList'
+    _title_callback: '\Drupal\camp_schedule\Controller\RegistrationsController::getNodeTitle'
+  requirements:
+    _custom_access: '\Drupal\camp_schedule\Controller\RegistrationsController::getNodeAccess'
+    _entity_access: 'node.edit'
+
+
+camp_schedule.schedule:
+  path: 'admin/content/schedule'
+  defaults:
+    _controller: '\Drupal\camp_schedule\Controller\ScheduleController::scheduleBuilder'
+    _title: 'Schedule Builder'
+  requirements:
+    _permission: 'administer camp schedule'

@@ -1,0 +1,42 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.schedule
+    - field.field.node.summit.field_date
+    - field.field.node.summit.field_sponsors
+    - field.field.node.summit.field_stick_to_top_of_date
+    - field.field.node.summit.field_stick_to_top_of_schedule
+    - node.type.summit
+  module:
+    - datetime_range
+    - user
+id: node.summit.schedule
+targetEntityType: node
+bundle: summit
+mode: schedule
+content:
+  field_date:
+    weight: 103
+    label: above
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_sponsors:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_stick_to_top_of_date: true
+  field_stick_to_top_of_schedule: true

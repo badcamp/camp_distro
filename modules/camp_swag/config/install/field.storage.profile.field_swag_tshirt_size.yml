@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - field_permissions
+    - options
+    - profile
+third_party_settings:
+  field_permissions:
+    permission_type: public
+id: profile.field_swag_tshirt_size
+field_name: field_swag_tshirt_size
+entity_type: profile
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: X-Small
+      label: X-Small
+    -
+      value: Small
+      label: Small
+    -
+      value: Medium
+      label: Medium
+    -
+      value: Large
+      label: Large
+    -
+      value: X-Large
+      label: X-Large
+    -
+      value: XX-Large
+      label: XX-Large
+    -
+      value: XXX-Large
+      label: XXX-Large
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

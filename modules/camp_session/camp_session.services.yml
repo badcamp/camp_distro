@@ -1,0 +1,6 @@
+services:
+  camp_session_session_subscriber:
+    class: Drupal\camp_session\EventSubscriber\SessionAcceptedSubscriber
+    arguments: ['@logger.factory', '@plugin.manager.mail', '@current_user', '@entity.manager']
+    tags:
+      - {name: event_subscriber}

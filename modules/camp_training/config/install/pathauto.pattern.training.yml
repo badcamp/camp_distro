@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: training
+label: Training
+type: 'canonical_entities:node'
+pattern: 'trainings/[node:title]'
+selection_criteria:
+  b55ccfe7-6953-4949-a6c1-3bf49d9ccf5d:
+    id: node_type
+    bundles:
+      training: training
+    negate: false
+    context_mapping:
+      node: node
+    uuid: b55ccfe7-6953-4949-a6c1-3bf49d9ccf5d
+selection_logic: and
+weight: -5
+relationships: {  }

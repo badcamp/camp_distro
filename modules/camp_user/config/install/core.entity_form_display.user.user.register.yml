@@ -1,0 +1,99 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.user.register
+    - field.field.user.user.field_i_am_interested_in_drupal_
+    - field.field.user.user.field_i_am_interested_in_hearing
+    - field.field.user.user.field_user_bio
+    - field.field.user.user.field_user_first_name
+    - field.field.user.user.field_user_last_name
+    - field.field.user.user.field_user_organization
+    - field.field.user.user.field_user_organization_website
+    - field.field.user.user.field_user_photo
+    - field.field.user.user.field_user_public_schedule
+    - field.field.user.user.field_user_social_profile_links
+    - field.field.user.user.field_user_title
+  module:
+    - field_group
+    - user
+third_party_settings:
+  field_group:
+    group_account_information:
+      children:
+        - account
+      parent_name: ''
+      weight: 1
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Account Information'
+      region: content
+    group_personal_information:
+      children:
+        - field_user_first_name
+        - field_user_last_name
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Personal Information'
+      region: content
+id: user.user.register
+targetEntityType: user
+bundle: user
+mode: register
+content:
+  account:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_i_am_interested_in_drupal_:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_i_am_interested_in_hearing:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_user_first_name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_user_last_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_user_bio: true
+  field_user_organization: true
+  field_user_organization_website: true
+  field_user_photo: true
+  field_user_public_schedule: true
+  field_user_social_profile_links: true
+  field_user_title: true
+  language: true
+  path: true
+  timezone: true

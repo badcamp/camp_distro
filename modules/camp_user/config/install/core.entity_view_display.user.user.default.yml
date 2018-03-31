@@ -1,0 +1,61 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_i_am_interested_in_drupal_
+    - field.field.user.user.field_i_am_interested_in_hearing
+    - field.field.user.user.field_user_bio
+    - field.field.user.user.field_user_first_name
+    - field.field.user.user.field_user_last_name
+    - field.field.user.user.field_user_organization
+    - field.field.user.user.field_user_organization_website
+    - field.field.user.user.field_user_photo
+    - field.field.user.user.field_user_public_schedule
+    - field.field.user.user.field_user_social_profile_links
+    - field.field.user.user.field_user_title
+  module:
+    - image
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_user_first_name:
+    weight: 1
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_user_last_name:
+    weight: 2
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_user_photo:
+    type: image
+    weight: 0
+    region: content
+    label: visually_hidden
+    settings:
+      image_style: ''
+      image_link: content
+    third_party_settings: {  }
+hidden:
+  field_i_am_interested_in_drupal_: true
+  field_i_am_interested_in_hearing: true
+  field_user_bio: true
+  field_user_organization: true
+  field_user_organization_website: true
+  field_user_public_schedule: true
+  field_user_social_profile_links: true
+  field_user_title: true
+  flag_check_in: true
+  flag_featured_attendee: true
+  member_for: true
+  profile_swag: true

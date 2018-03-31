@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_session_files
+    - node.type.session
+  module:
+    - file
+id: node.session.field_session_files
+field_name: field_session_files
+entity_type: node
+bundle: session
+label: Files
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'session/files/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt pdf doc docx rtf md zip tar.gz tar'
+  max_filesize: ''
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

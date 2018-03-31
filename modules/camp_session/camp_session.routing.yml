@@ -1,0 +1,7 @@
+camp_session.session_emails:
+  path: '/admin/config/camp/session-emails'
+  defaults:
+    _form: '\Drupal\camp_session\Form\SessionEmailAdmin'
+    _title: 'Session Emails'
+  requirements:
+    _permission: 'administer camp session emails'

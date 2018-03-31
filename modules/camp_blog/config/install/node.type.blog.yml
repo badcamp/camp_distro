@@ -2,11 +2,17 @@ langcode: en
 status: true
 dependencies:
   module:
+    - camp_evaluations
     - menu_ui
 third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
+  camp_evaluations:
+    enable: 0
+    form: ''
+    same_page: 0
+    override_node: 0
 name: 'Blog Post'
 type: blog
 description: 'Creates a new post of news or announcements for the Camp.'

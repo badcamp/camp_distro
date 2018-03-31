@@ -3,5 +3,17 @@ status: true
 dependencies: {  }
 id: sponsor_manager
 label: 'Sponsor Manager'
-weight: 3
+weight: -8
 is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'create sponsor content'
+  - 'delete any sponsor content'
+  - 'delete own sponsor content'
+  - 'delete sponsor revisions'
+  - 'delete terms in sponsor_level'
+  - 'edit any sponsor content'
+  - 'edit own sponsor content'
+  - 'edit terms in sponsor_level'
+  - 'revert sponsor revisions'
+  - 'view sponsor revisions'

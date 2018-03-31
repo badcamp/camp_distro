@@ -1,0 +1,27 @@
+name: Training
+description: 'Provides Training content type and related configuration. '
+type: module
+core: 8.x
+dependencies:
+  - camp_core
+  - camp_schedule
+  - camp_sponsor
+  - camp_venue
+  - comment
+  - core
+  - datetime_range
+  - field
+  - field_group
+  - field_permissions
+  - file
+  - link
+  - menu_ui
+  - node
+  - path
+  - pathauto
+  - taxonomy
+  - text
+  - user
+  - views
+package: Camp
+version: 8.x-1.0

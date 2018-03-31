@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_swag
+    - profile.type.swag
+  module:
+    - user
+id: user.user.field_swag
+field_name: field_swag
+entity_type: user
+bundle: user
+label: Swag
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:profile'
+  handler_settings:
+    target_bundles:
+      swag: swag
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

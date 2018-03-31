@@ -1,0 +1,20 @@
+name: User
+description: 'Provide profiles for people who register for the camp.'
+type: module
+core: 8.x
+package: Camp
+dependencies:
+  - field
+  - field_group
+  - field_permissions
+  - file
+  - flag
+  - image
+  - link
+  - login_destination
+  - pathauto
+  - social_media_links_field
+  - text
+  - user
+  - views
+version: 8.x-1.0

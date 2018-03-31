@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: financial_assistant
+label: 'Financial Assistant'
+weight: 0
+is_admin: null
+permissions:
+  - 'access toolbar'

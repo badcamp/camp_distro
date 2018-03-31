@@ -3,4 +3,12 @@ status: true
 dependencies: {  }
 name: sponsor_logo
 label: 'Sponsor Logo'
-effects: {  }
+effects:
+  7446410c-3d28-43a2-b722-5cd0d8c4a486:
+    uuid: 7446410c-3d28-43a2-b722-5cd0d8c4a486
+    id: image_scale
+    weight: 1
+    data:
+      width: 350
+      height: 130
+      upscale: true

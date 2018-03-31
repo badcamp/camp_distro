@@ -1,6 +1,20 @@
-name: Venue Management
+name: 'Venue Management'
 description: 'Manage venues as places where items are held.'
 core: 8.x
 package: Camp
 type: module
 version: 8.x-1.0
+dependencies:
+  - camp_event
+  - camp_session
+  - camp_summit
+  - camp_training
+  - field
+  - field_permissions
+  - file
+  - image
+  - link
+  - node
+  - path
+  - taxonomy
+  - text

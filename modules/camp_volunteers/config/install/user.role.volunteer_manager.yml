@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: volunteer_manager
+label: 'Volunteer Manager'
+weight: 3
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'flag check_in'
+  - 'unflag check_in'

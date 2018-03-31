@@ -1,0 +1,65 @@
+<?php
+
+use Drupal\node\NodeInterface;
+use Drupal\Core\Session\AccountInterface;
+
+/**
+ * Implements hook_node_access_records().
+ */
+function camp_sponsor_node_access_records(NodeInterface $node) {
+  $grants = [];
+
+  if($node->bundle() == 'sponsor') {
+
+    $ids = [];
+
+    foreach ($node->get('field_sponsor_members')->getValue() AS $id) {
+      $grants[] = [
+        'realm' => 'sponsor_member',
+        'gid' => $id['target_id'],
+        'grant_view' => 1,
+        'grant_update' => 1,
+        'grant_delete' => 0
+      ];
+    }
+  }
+
+  return $grants;
+}
+
+/**
+ * Implements hook_node_grants().
+ */
+function camp_sponsor_node_grants(AccountInterface $account, $op) {
+  $grants = [];
+  if($account->isAuthenticated()){
+    $grants['sponsor_member'] = array(
+      $account->id()
+    );
+  }
+
+  return $grants;
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function camp_sponsor_entity_extra_field_info() {
+  $extra = [];
+
+  $moduleHandler = \Drupal::service('module_handler');
+
+  if($moduleHandler->moduleExists('camp_job_posting')) {
+    $extra['node']['sponsor']['display']['jobs'] = [
+      'title' => t('Job Postings'),
+      'description' => t('Contains all of the ')
+    ];
+  }
+
+  $extra['node']['sponsor']['display']['events'] = [
+    'title' => t('Events'),
+    'description' => t('Contains all of the events scheduled.')
+  ];
+
+  return $extra;
+}

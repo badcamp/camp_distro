@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.job_posting.field_company
+    - field.field.node.job_posting.field_job_description
+    - field.field.node.job_posting.field_job_posting_documents
+    - node.type.job_posting
+  module:
+    - text
+    - user
+id: node.job_posting.teaser
+targetEntityType: node
+bundle: job_posting
+mode: teaser
+content:
+  field_company:
+    type: entity_reference_entity_view
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      view_mode: sponsor_logo
+      link: false
+    third_party_settings: {  }
+  field_job_description:
+    type: text_summary_or_trimmed
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      trim_length: 200
+    third_party_settings: {  }
+hidden:
+  field_job_posting_documents: true
+  flag_add_to_schedule: true
+  links: true

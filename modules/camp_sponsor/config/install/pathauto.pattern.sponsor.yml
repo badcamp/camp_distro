@@ -6,16 +6,16 @@ dependencies:
 id: sponsor
 label: Sponsor
 type: 'canonical_entities:node'
-pattern: 'sponsor/[node:field_sponsor_level:entity:name]/[node:title]'
+pattern: 'sponsors/[node:field_sponsor_level:entity:name]/[node:title]'
 selection_criteria:
-  8cdb632e-fbb3-4d20-b87f-b6f3c5eb1e57:
+  a0c92ae8-d2d7-4eb8-8a96-4af7cda4a47e:
     id: node_type
     bundles:
       sponsor: sponsor
     negate: false
     context_mapping:
       node: node
-    uuid: 8cdb632e-fbb3-4d20-b87f-b6f3c5eb1e57
+    uuid: a0c92ae8-d2d7-4eb8-8a96-4af7cda4a47e
 selection_logic: and
 weight: -5
 relationships: {  }

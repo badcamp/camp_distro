@@ -1,0 +1,61 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.schedule
+    - field.field.node.training.field_date
+    - field.field.node.training.field_skill_level
+    - field.field.node.training.field_sponsors
+    - field.field.node.training.field_trainers
+    - field.field.node.training.field_training_description
+    - field.field.node.training.field_training_files
+    - field.field.node.training.field_training_links
+    - field.field.node.training.field_venue
+    - node.type.training
+  module:
+    - text
+    - user
+id: node.training.schedule
+targetEntityType: node
+bundle: training
+mode: schedule
+content:
+  field_skill_level:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: visually_hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_sponsors:
+    type: entity_reference_label
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_training_description:
+    type: text_summary_or_trimmed
+    weight: 1
+    region: content
+    label: visually_hidden
+    settings:
+      trim_length: 200
+    third_party_settings: {  }
+  field_venue:
+    type: entity_reference_label
+    weight: 2
+    region: content
+    label: visually_hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+hidden:
+  field_date: true
+  field_trainers: true
+  field_training_files: true
+  field_training_links: true
+  flag_add_to_schedule: true
+  links: true

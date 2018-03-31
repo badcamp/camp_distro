@@ -1,0 +1,10 @@
+camp_sponsor.admin:
+  route_name: node.add
+  title: 'Add Sponsor'
+  route_parameters:
+    node_type: sponsor
+  options:
+    query:
+      destination: /admin/content/camp/sponsors
+  appears_on:
+    - 'view.sponsors.admin'

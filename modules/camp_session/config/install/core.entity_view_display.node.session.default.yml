@@ -1,0 +1,130 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.session.evaluation_form
+    - field.field.node.session.field_date
+    - field.field.node.session.field_session_description
+    - field.field.node.session.field_session_files
+    - field.field.node.session.field_session_status
+    - field.field.node.session.field_session_track
+    - field.field.node.session.field_session_video
+    - field.field.node.session.field_skill_level
+    - field.field.node.session.field_speakers
+    - field.field.node.session.field_sponsors
+    - field.field.node.session.field_stick_to_top_of_date
+    - field.field.node.session.field_stick_to_top_of_schedule
+    - field.field.node.session.field_venue
+    - node.type.session
+  module:
+    - datetime_range
+    - field_delimiter
+    - file
+    - text
+    - user
+    - video_embed_field
+id: node.session.default
+targetEntityType: node
+bundle: session
+mode: default
+content:
+  field_date:
+    weight: 0
+    label: hidden
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+    region: content
+  field_session_description:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_session_files:
+    weight: 6
+    label: hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_table
+    region: content
+  field_session_track:
+    weight: 2
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_session_video:
+    weight: 5
+    label: hidden
+    settings:
+      responsive: true
+      width: 854
+      height: 480
+      autoplay: false
+    third_party_settings:
+      field_delimiter:
+        delimiter: ''
+    type: video_embed_field_video
+    region: content
+  field_skill_level:
+    weight: 3
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_speakers:
+    weight: 8
+    label: above
+    settings:
+      view_mode: member_display
+      link: false
+    third_party_settings:
+      field_delimiter:
+        delimiter: ''
+    type: entity_reference_entity_view
+    region: content
+  field_sponsors:
+    weight: 9
+    label: above
+    settings:
+      view_mode: sponsor_logo
+      link: false
+    third_party_settings:
+      field_delimiter:
+        delimiter: ''
+    type: entity_reference_entity_view
+    region: content
+  field_venue:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  flag_accepted_session:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  flag_add_to_schedule:
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  evaluation_form: true
+  field_session_status: true
+  field_stick_to_top_of_date: true
+  field_stick_to_top_of_schedule: true
+  links: true

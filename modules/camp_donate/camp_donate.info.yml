@@ -1,0 +1,7 @@
+name: Donate
+type: module
+core: 8.x
+dependencies:
+  - camp_finances
+version: 8.x-1.0
+package: Camp

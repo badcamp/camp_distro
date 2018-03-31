@@ -1,0 +1,73 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.session.evaluation_form
+    - field.field.node.session.field_date
+    - field.field.node.session.field_session_description
+    - field.field.node.session.field_session_files
+    - field.field.node.session.field_session_status
+    - field.field.node.session.field_session_track
+    - field.field.node.session.field_session_video
+    - field.field.node.session.field_skill_level
+    - field.field.node.session.field_speakers
+    - field.field.node.session.field_sponsors
+    - field.field.node.session.field_stick_to_top_of_date
+    - field.field.node.session.field_stick_to_top_of_schedule
+    - field.field.node.session.field_venue
+    - node.type.session
+  module:
+    - field_delimiter
+    - text
+    - user
+id: node.session.teaser
+targetEntityType: node
+bundle: session
+mode: teaser
+content:
+  field_session_description:
+    type: text_default
+    weight: 3
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_session_track:
+    type: entity_reference_label
+    weight: 2
+    region: content
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_skill_level:
+    type: entity_reference_label
+    weight: 1
+    region: content
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_speakers:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: inline
+    settings:
+      link: true
+    third_party_settings:
+      field_delimiter:
+        delimiter: ', '
+hidden:
+  evaluation_form: true
+  field_date: true
+  field_session_files: true
+  field_session_status: true
+  field_session_video: true
+  field_sponsors: true
+  field_stick_to_top_of_date: true
+  field_stick_to_top_of_schedule: true
+  field_venue: true
+  flag_add_to_schedule: true
+  links: true

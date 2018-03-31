@@ -1,0 +1,44 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.member_display
+    - field.field.user.user.field_user_bio
+    - field.field.user.user.field_user_first_name
+    - field.field.user.user.field_user_last_name
+    - field.field.user.user.field_user_organization
+    - field.field.user.user.field_user_organization_website
+    - field.field.user.user.field_user_photo
+    - field.field.user.user.field_user_public_schedule
+    - field.field.user.user.field_user_social_profile_links
+    - field.field.user.user.field_user_title
+    - image.style.member_image
+  module:
+    - image
+    - user
+id: user.user.member_display
+targetEntityType: user
+bundle: user
+mode: member_display
+content:
+  field_user_photo:
+    type: image
+    weight: 0
+    region: content
+    label: visually_hidden
+    settings:
+      image_style: member_image
+      image_link: content
+    third_party_settings: {  }
+hidden:
+  field_user_bio: true
+  field_user_first_name: true
+  field_user_last_name: true
+  field_user_organization: true
+  field_user_organization_website: true
+  field_user_public_schedule: true
+  field_user_social_profile_links: true
+  field_user_title: true
+  flag_check_in: true
+  flag_featured_attendee: true
+  member_for: true

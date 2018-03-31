@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+name: member_image
+label: 'Member Image'
+effects:
+  b73b3b8c-4979-4373-b667-128963fb3d36:
+    uuid: b73b3b8c-4979-4373-b667-128963fb3d36
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 240
+      height: 320

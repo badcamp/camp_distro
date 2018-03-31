@@ -1,0 +1,4 @@
+bundle: camp
+required:
+  - field.field.user.user.field_swag
+  - field.storage.user.field_swag

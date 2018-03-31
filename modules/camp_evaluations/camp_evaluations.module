@@ -1,0 +1,201 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\NodeTypeInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function camp_evaluations_form_node_type_edit_form_alter(&$form, FormStateInterface $form_state) {
+
+  /** @var \Drupal\node\NodeTypeInterface $type */
+  $type = $form_state->getFormObject()->getEntity();
+
+  $form['evaluation'] = [
+    '#type' => 'details',
+    '#title' => t('Evaluation'),
+    '#group' => 'additional_settings'
+  ];
+
+  $form['evaluation']['evaluator_enable'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Enable Evaluation'),
+    '#default_value' => $type->getThirdPartySetting('camp_evaluations', 'enable', 0)
+  ];
+
+  $form['evaluation']['evaluator_same_page'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Add Evaluation to Same Page'),
+    '#default_value' => $type->getThirdPartySetting('camp_evaluations', 'same_page', 0),
+    '#states' => [
+      'invisible' => [
+        'input[name=evaluator_enable]' => array('checked' => false)
+      ]
+    ]
+  ];
+
+  $form['evaluation']['evaluator_override_node'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Allow override on content'),
+    '#default_value' => $type->getThirdPartySetting('camp_evaluations', 'override_node', 0),
+    '#states' => [
+      'invisible' => [
+        'input[name=evaluator_enable]' => array('checked' => false)
+      ]
+    ]
+  ];
+
+  /** @var \Drupal\webform\WebformEntityStorageInterface $webform_storage */
+  $webform_storage = \Drupal::service('entity_type.manager')->getStorage('webform');
+  $options = $webform_storage->getOptions(FALSE);
+  $evaluation_forms = isset($options['Evaluation Form']) ? $options['Evaluation Form'] : [];
+
+  $form['evaluation']['evaluator_form'] = [
+    '#type' => 'select',
+    '#title' => t('Evaluation Form'),
+    '#options' => array_merge(['' => t('None')], $evaluation_forms),
+    '#default_value' => $type->getThirdPartySetting('camp_evaluations', 'form', 'default'),
+    '#description' => t('The Evaluation Webform to use. To add additional webforms, add the webform to the "Evaluation Form" category.'),
+    '#states' => [
+      'invisible' => [
+        'input[name=evaluator_enable]' => array('checked' => false)
+      ]
+    ]
+  ];
+
+  $form['#entity_builders'][] = 'camp_evaluations_form_node_type_form_builder';
+}
+
+/**
+ * Entity builder for the node type form with menu options.
+ *
+ * @see camp_evaluations_form_node_type_edit_form_alter()
+ */
+function camp_evaluations_form_node_type_form_builder($entity_type, NodeTypeInterface $type, &$form, FormStateInterface $form_state) {
+  $type->setThirdPartySetting('camp_evaluations', 'enable', $form_state->getValue('evaluator_enable'));
+  $type->setThirdPartySetting('camp_evaluations', 'form', $form_state->getValue('evaluator_form'));
+  $type->setThirdPartySetting('camp_evaluations', 'same_page', $form_state->getValue('evaluator_same_page'));
+  $type->setThirdPartySetting('camp_evaluations', 'override_node', $form_state->getValue('evaluator_override_node'));
+
+
+  if($form_state->getValue('evaluator_enable')){
+    // TRUE: Add Field (if does not exist)
+    node_add_evaluation_form_field($type);
+  }
+  else{
+    // FALSE: Remove Field (if exists)
+    node_remove_evaluation_form_field($type);
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function camp_evaluations_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\node\NodeForm $form_object */
+  $form_object = $form_state->getFormObject();
+  if($form_object instanceof \Drupal\node\NodeForm) {
+    $node = $form_object->getEntity();
+    $node_type = \Drupal\node\Entity\NodeType::load($node->bundle());
+
+    $settings = $node_type->getThirdPartySettings('camp_evaluations');
+    if(!empty($settings) && $settings['enable']) {
+      if(!$settings['override_node']){
+        $form['evaluation_form']['#access'] = false;
+      }
+    }
+  }
+}
+
+/**
+ * Adds the default body field to a node type.
+ */
+function node_add_evaluation_form_field(NodeTypeInterface $type, $label = 'Evaluation Form') {
+  $field_storage = FieldStorageConfig::loadByName('node', 'evaluation_form');
+  if(empty($field_storage)){
+    $field_storage = FieldStorageConfig::create([
+      'langcode' => 'en',
+      'status' => true,
+      'dependencies' => [
+        'enforced' => [
+          'module' => ['webform']
+        ],
+        'module' => [
+          'field_permissions',
+          'node',
+          'webform',
+        ],
+      ],
+      'third_party_settings' => [
+        'field_permissions' => [
+            'permission_type' => 'public',
+        ],
+      ],
+      'id' => 'node.evaluation_form',
+      'field_name' => 'evaluation_form',
+      'entity_type' => 'node',
+      'type' => 'webform',
+      'settings' => [
+          'target_type' => 'webform',
+      ],
+      'module' => 'webform',
+      'locked' => false,
+      'cardinality' => 1,
+      'translatable' => true,
+      'indexes' => [],
+      'persist_with_no_fields' => false,
+      'custom_storage' => false,
+    ]);
+    $field_storage->save();
+  }
+
+  $field = FieldConfig::loadByName('node', $type->id(), 'evaluation_form');
+  if (empty($field)) {
+    $field = FieldConfig::create([
+      'field_storage' => $field_storage,
+      'bundle' => $type->id(),
+      'label' => $label,
+      'settings' => [
+        'handler' => 'default:webform',
+        'handler_settings' => [
+          'target_bundles' => null,
+          'auto_create' => false,
+        ],
+        'default_data' => '',
+        'status' => 'open',
+        'open' => '',
+        'close' => ''
+      ],
+    ]);
+    $field->save();
+
+    entity_get_form_display('node', $type->id(), 'default')
+      ->setComponent('evaluation_form', [
+        'type' => 'webform_entity_reference_select',
+      ])
+      ->save();
+
+    entity_get_display('node', $type->id(), 'default')
+      ->setComponent('evaluation_form', [
+        'label' => 'hidden',
+        'type' => 'hidden',
+      ])
+      ->save();
+  }
+
+  return $field;
+}
+
+/**
+ * @param \Drupal\node\NodeTypeInterface $type
+ */
+function node_remove_evaluation_form_field(NodeTypeInterface $type) {
+  $field = FieldConfig::loadByName('node', $type->id(), 'evaluation_form');
+  if (!empty($field)) {
+    $field->delete();
+  }
+}

@@ -1,0 +1,25 @@
+name: Schedule
+type: module
+core: 8.x
+dependencies:
+  - camp_core
+  - camp_event
+  - camp_schedule
+  - camp_session
+  - camp_summit
+  - camp_user
+  - camp_venue
+  - daterange_compact
+  - datetime
+  - datetime_range
+  - field
+  - field_permissions
+  - flag
+  - node
+  - system
+  - text
+  - user
+  - views
+version: 8.x-1.0
+package: Camp
+description: 'Show a layout of what the camp''s agenda is. What items are where and at what time.'

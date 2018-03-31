@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies: {  }
+id: blog_manager
+label: 'Blog Manager'
+weight: -3
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'create blog content'
+  - 'delete any blog content'
+  - 'delete blog revisions'
+  - 'delete own blog content'
+  - 'delete terms in blog_tags'
+  - 'edit any blog content'
+  - 'edit own blog content'
+  - 'edit terms in blog_tags'
+  - 'revert blog revisions'
+  - 'view blog revisions'
