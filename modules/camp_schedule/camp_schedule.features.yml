@@ -1,4 +1,11 @@
 bundle: camp
+excluded:
+  - field.field.node.event.field_stick_to_top_of_date
+  - field.field.node.event.field_stick_to_top_of_schedule
+  - field.field.node.session.field_stick_to_top_of_date
+  - field.field.node.session.field_stick_to_top_of_schedule
+  - field.field.node.summit.field_stick_to_top_of_date
+  - field.field.node.summit.field_stick_to_top_of_schedule
 required:
   - core.entity_view_display.node.event.schedule
   - core.entity_view_display.node.session.schedule
