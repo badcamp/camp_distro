@@ -4,6 +4,9 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.summit.field_date
+    - field.field.node.summit.field_sponsors
+    - field.field.node.summit.field_stick_to_top_of_date
+    - field.field.node.summit.field_stick_to_top_of_schedule
     - field.field.node.summit.field_summit_description
     - node.type.summit
   module:

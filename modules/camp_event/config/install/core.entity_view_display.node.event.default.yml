@@ -7,6 +7,10 @@ dependencies:
     - field.field.node.event.field_event_more_info
     - field.field.node.event.field_event_type
     - field.field.node.event.field_event_url_more_info
+    - field.field.node.event.field_sponsors
+    - field.field.node.event.field_stick_to_top_of_date
+    - field.field.node.event.field_stick_to_top_of_schedule
+    - field.field.node.event.field_venue
     - node.type.event
   module:
     - datetime_range
