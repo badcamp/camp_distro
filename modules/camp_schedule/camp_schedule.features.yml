@@ -7,14 +7,9 @@ excluded:
   - field.field.node.summit.field_stick_to_top_of_date
   - field.field.node.summit.field_stick_to_top_of_schedule
 required:
-  - core.entity_view_display.node.event.schedule
-  - core.entity_view_display.node.session.schedule
-  - core.entity_view_display.node.summit.schedule
   - core.entity_view_mode.node.schedule
   - field.storage.node.field_stick_to_top_of_schedule
   - field.storage.node.field_date
   - flag.flag.add_to_schedule
-  - system.action.flag_action.add_to_schedule.flag
-  - system.action.flag_action.add_to_schedule.unflag
   - views.view.schedule
   - rest.resource.entity.node

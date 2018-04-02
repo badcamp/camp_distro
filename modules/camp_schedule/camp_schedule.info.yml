@@ -3,6 +3,8 @@ type: module
 core: 8.x
 dependencies:
   - camp_core
+  - camp_schedule
+  - camp_user
   - camp_venue
   - daterange_compact
   - datetime

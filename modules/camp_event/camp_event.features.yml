@@ -2,3 +2,4 @@ bundle: camp
 required:
   - field.field.node.event.field_sponsors
   - pathauto.pattern.events
+  - core.entity_view_display.node.event.schedule
