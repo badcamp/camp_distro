@@ -1,2 +1,7 @@
 bundle: camp
+excluded:
+  - field.field.node.event.field_venue
+  - field.field.node.session.field_venue
+  - field.field.node.summit.field_venue
+  - field.field.node.training.field_venue
 required: true
