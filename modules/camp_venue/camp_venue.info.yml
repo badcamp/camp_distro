@@ -5,10 +5,6 @@ package: Camp
 type: module
 version: 8.x-1.0
 dependencies:
-  - camp_event
-  - camp_session
-  - camp_summit
-  - camp_training
   - field
   - field_permissions
   - file
