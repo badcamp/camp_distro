@@ -8,7 +8,6 @@ dependencies:
   - camp_schedule
   - camp_sponsor
   - camp_venue
-  - comment
   - daterange_compact
   - datetime_range
   - field
