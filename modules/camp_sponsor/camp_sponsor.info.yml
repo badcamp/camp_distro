@@ -5,12 +5,7 @@ core: 8.x
 package: Camp
 dependencies:
   - camp_core
-  - camp_event
-  - camp_session
-  - camp_summit
-  - camp_training
   - contextual
-  - daterange_compact
   - field
   - field_permissions
   - file
