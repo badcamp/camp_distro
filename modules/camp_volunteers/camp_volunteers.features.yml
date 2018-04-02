@@ -1,4 +1,1 @@
 bundle: camp
-required:
-  - system.action.flag_action.check_in.flag
-  - system.action.flag_action.check_in.unflag
