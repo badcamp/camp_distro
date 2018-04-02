@@ -17,6 +17,8 @@ dependencies:
   - field_permissions
   - flag
   - node
+  - rest
+  - serialization
   - system
   - text
   - user

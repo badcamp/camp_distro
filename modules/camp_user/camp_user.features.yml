@@ -2,3 +2,5 @@ bundle: camp
 required:
   - system.action.flag_action.featured_attendee.flag
   - system.action.flag_action.featured_attendee.unflag
+  - core.entity_view_mode.user.compact
+  - core.entity_view_mode.user.full

@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: summits
+label: Summits
+type: 'canonical_entities:node'
+pattern: 'summits/[node:title]'
+selection_criteria:
+  e09abeaf-40e6-4346-9537-c340e400c57f:
+    id: node_type
+    bundles:
+      summit: summit
+    negate: false
+    context_mapping:
+      node: node
+    uuid: e09abeaf-40e6-4346-9537-c340e400c57f
+selection_logic: and
+weight: -5
+relationships: {  }

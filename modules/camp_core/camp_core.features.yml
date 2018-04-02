@@ -3,12 +3,14 @@ excluded:
   - comment.type.comments
   - field.field.comment.comments.comment_body
 required:
-  - field.storage.node.field_date
-  - field.storage.node.field_sponsors
   - node.type.webform
   - core.entity_form_display.node.webform.default
   - core.entity_view_display.node.webform.default
   - core.entity_view_display.node.webform.teaser
   - field.field.node.webform.body
+  - field.field.node.webform.webform
   - webform.webform.contact
   - webform.webform_options.country_names
+  - core.base_field_override.node.webform.promote
+  - field.storage.node.webform
+  - pathauto.pattern.general_taxonomy

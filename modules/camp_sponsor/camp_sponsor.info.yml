@@ -12,6 +12,7 @@ dependencies:
   - contextual
   - daterange_compact
   - field
+  - field_permissions
   - file
   - image
   - link
