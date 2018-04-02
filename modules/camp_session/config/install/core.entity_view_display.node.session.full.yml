@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.full
-    - field.field.node.session.evaluation_form
     - field.field.node.session.field_date
     - field.field.node.session.field_session_description
     - field.field.node.session.field_session_files
@@ -124,7 +123,6 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  evaluation_form: true
   field_session_status: true
   field_stick_to_top_of_date: true
   field_stick_to_top_of_schedule: true

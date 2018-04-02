@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.session.evaluation_form
     - field.field.node.session.field_date
     - field.field.node.session.field_session_description
     - field.field.node.session.field_session_files
@@ -23,7 +22,6 @@ dependencies:
     - path
     - text
     - video_embed_field
-    - webform
 third_party_settings:
   field_group:
     group_details:
@@ -75,13 +73,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  evaluation_form:
-    type: webform_entity_reference_select
-    weight: 28
-    settings:
-      default_data: true
-    third_party_settings: {  }
-    region: content
   field_date:
     weight: 6
     settings: {  }

@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.session.evaluation_form
     - field.field.node.session.field_date
     - field.field.node.session.field_session_description
     - field.field.node.session.field_session_files
@@ -60,7 +59,6 @@ content:
       field_delimiter:
         delimiter: ', '
 hidden:
-  evaluation_form: true
   field_date: true
   field_session_files: true
   field_session_status: true
