@@ -3,11 +3,7 @@ status: true
 dependencies: {  }
 id: add_to_schedule
 label: 'Add to Schedule'
-bundles:
-  - event
-  - session
-  - summit
-  - training
+bundles: []
 entity_type: node
 global: false
 weight: 0
