@@ -2,19 +2,11 @@ langcode: en
 status: true
 dependencies:
   module:
-    - camp_evaluations
     - menu_ui
 third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-  camp_evaluations:
-    enable: 1
-    form: evaluation_form
-    evaluator_same_page: 0
-    evaluator_override_node: 0
-    same_page: 0
-    override_node: 0
 name: Session
 type: session
 description: '<em>Sessions</em> are talks given by individuals.'
