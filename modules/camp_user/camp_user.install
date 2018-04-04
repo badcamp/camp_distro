@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Implements hook_uninstall().
+ */
+function camp_user_uninstall() {
+  // Delete Configuration generated at at activation.
+  $dir = DRUPAL_ROOT . DIRECTORY_SEPARATOR . drupal_get_path('module', 'camp_user') . DIRECTORY_SEPARATOR . 'config/install';
+  $files = file_scan_directory($dir, '/.*\.yml$/');
+  foreach ($files as $file) {
+    \Drupal::configFactory()->getEditable($file->name)->delete();
+  }
+}
