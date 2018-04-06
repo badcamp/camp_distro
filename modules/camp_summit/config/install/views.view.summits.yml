@@ -491,7 +491,7 @@ display:
           destination: true
           plugin_id: dropbutton
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -507,6 +507,22 @@ display:
     position: 2
     display_options:
       display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags: {  }
+  summit_list_page:
+    display_plugin: page
+    id: summit_list_page
+    display_title: Page
+    position: 3
+    display_options:
+      display_extenders: {  }
+      path: summits
     cache_metadata:
       max-age: -1
       contexts:

@@ -10,6 +10,7 @@ dependencies:
   - daterange_compact
   - datetime_range
   - field
+  - field_delimiter
   - field_group
   - field_permissions
   - menu_ui
