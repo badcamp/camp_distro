@@ -660,7 +660,7 @@ display:
         options:
           perm: 'edit any event content'
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -678,6 +678,26 @@ display:
     position: 2
     display_options:
       display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_date'
+        - 'config:field.storage.node.field_event_type'
+        - 'config:field.storage.node.field_sponsors'
+        - extensions
+  event_listing_page:
+    display_plugin: page
+    id: event_listing_page
+    display_title: Page
+    position: 3
+    display_options:
+      display_extenders: {  }
+      path: events
     cache_metadata:
       max-age: -1
       contexts:
