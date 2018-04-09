@@ -34,3 +34,4 @@ dependencies:
   - user
   - views
   - webform
+  - webform_node
