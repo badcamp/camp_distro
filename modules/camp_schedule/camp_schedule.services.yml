@@ -1,0 +1,4 @@
+services:
+  camp_schedule.bundles:
+    class: Drupal\camp_schedule\CampScheduleService
+    arguments: ['@config.factory']
