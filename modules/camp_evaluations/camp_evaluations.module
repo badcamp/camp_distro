@@ -76,17 +76,19 @@ function camp_evaluations_form_node_type_edit_form_alter(&$form, FormStateInterf
  * @see camp_evaluations_form_node_type_edit_form_alter()
  */
 function camp_evaluations_form_node_type_form_builder($entity_type, NodeTypeInterface $type, &$form, FormStateInterface $form_state) {
-  $type->setThirdPartySetting('camp_evaluations', 'enable', $form_state->getValue('evaluator_enable'));
-  $type->setThirdPartySetting('camp_evaluations', 'form', $form_state->getValue('evaluator_form'));
-  $type->setThirdPartySetting('camp_evaluations', 'same_page', $form_state->getValue('evaluator_same_page'));
-  $type->setThirdPartySetting('camp_evaluations', 'override_node', $form_state->getValue('evaluator_override_node'));
-
-
   if($form_state->getValue('evaluator_enable')){
+    $type->setThirdPartySetting('camp_evaluations', 'enable', $form_state->getValue('evaluator_enable'));
+    $type->setThirdPartySetting('camp_evaluations', 'form', $form_state->getValue('evaluator_form'));
+    $type->setThirdPartySetting('camp_evaluations', 'same_page', $form_state->getValue('evaluator_same_page'));
+    $type->setThirdPartySetting('camp_evaluations', 'override_node', $form_state->getValue('evaluator_override_node'));
     // TRUE: Add Field (if does not exist)
     node_add_evaluation_form_field($type);
   }
   else{
+    $type->unsetThirdPartySetting('camp_evaluations', 'enable');
+    $type->unsetThirdPartySetting('camp_evaluations', 'form');
+    $type->unsetThirdPartySetting('camp_evaluations', 'same_page');
+    $type->unsetThirdPartySetting('camp_evaluations', 'override_node');
     // FALSE: Remove Field (if exists)
     node_remove_evaluation_form_field($type);
   }
