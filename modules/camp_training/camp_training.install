@@ -1,6 +1,24 @@
 <?php
 
 /**
+ * Implements hook_install().
+ */
+function camp_training_install(){
+  if(\Drupal::moduleHandler()->moduleExists('camp_schedule')){
+    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('camp_training');
+  }
+}
+
+/**
+ * Implements hook_module_installed().
+ */
+function camp_training_module_installed($modules){
+  if(in_array('camp_schedule')){
+    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('camp_training');
+  }
+}
+
+/**
  * Implements hook_uninstall().
  */
 function camp_training_uninstall() {
@@ -9,5 +27,9 @@ function camp_training_uninstall() {
   $files = file_scan_directory($dir, '/.*\.yml$/');
   foreach ($files as $file) {
     \Drupal::configFactory()->getEditable($file->name)->delete();
+  }
+
+  if(\Drupal::moduleHandler()->moduleExists('camp_schedule')){
+    \Drupal::service('camp_schedule.bundles')->removeBundleFromFlag('camp_training');
   }
 }
