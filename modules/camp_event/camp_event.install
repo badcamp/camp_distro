@@ -3,33 +3,33 @@
 /**
  * Implements hook_install().
  */
-function camp_summit_install(){
+function camp_event_install(){
   if(\Drupal::moduleHandler()->moduleExists('camp_schedule')){
-    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('camp_summit');
+    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('camp_event');
   }
 }
 
 /**
  * Implements hook_module_installed().
  */
-function camp_summit_module_installed($modules){
+function camp_event_module_installed($modules){
   if(in_array('camp_schedule')){
-    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('camp_summit');
+    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('camp_event');
   }
 }
 
 /**
  * Implements hook_uninstall().
  */
-function camp_summit_uninstall() {
+function camp_event_uninstall() {
   // Delete Configuration generated at at activation.
-  $dir = DRUPAL_ROOT . DIRECTORY_SEPARATOR . drupal_get_path('module', 'camp_summit') . DIRECTORY_SEPARATOR . 'config/install';
+  $dir = DRUPAL_ROOT . DIRECTORY_SEPARATOR . drupal_get_path('module', 'camp_event') . DIRECTORY_SEPARATOR . 'config/install';
   $files = file_scan_directory($dir, '/.*\.yml$/');
   foreach ($files as $file) {
     \Drupal::configFactory()->getEditable($file->name)->delete();
   }
 
   if(\Drupal::moduleHandler()->moduleExists('camp_schedule')){
-    \Drupal::service('camp_schedule.bundles')->removeBundleFromFlag('camp_summit');
+    \Drupal::service('camp_schedule.bundles')->removeBundleFromFlag('camp_event');
   }
 }
