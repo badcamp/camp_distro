@@ -117,3 +117,27 @@ function camp_core_node_grants(AccountInterface $account, $op) {
 
   return $grants;
 }
+
+/**
+ * Uninstall the config for a specific module.
+ */
+function camp_core_uninstall_config($module) {
+  $dirs = ['optional', 'install'];
+  foreach($dirs AS $dir_name) {
+    $dir = DRUPAL_ROOT . DIRECTORY_SEPARATOR . drupal_get_path('module', $module) . DIRECTORY_SEPARATOR . 'config/' . $dir_name;
+    $files = file_scan_directory($dir, '/.*\.yml$/');
+    foreach ($files as $file) {
+      \Drupal::configFactory()->getEditable($file->name)->delete();
+    }
+  }
+}
+
+/**
+ * @param $array
+ * @param $position
+ * @param $insert_array
+ */
+function array_insert (&$array, $position, $insert_array) {
+  $first_array = array_splice ($array, 0, $position);
+  $array = array_merge ($first_array, $insert_array, $array);
+}

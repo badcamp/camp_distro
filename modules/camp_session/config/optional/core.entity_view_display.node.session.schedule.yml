@@ -17,6 +17,7 @@ dependencies:
   module:
     - text
     - user
+    - camp_schedule
 id: node.session.schedule
 targetEntityType: node
 bundle: session

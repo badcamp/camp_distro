@@ -23,11 +23,12 @@ function camp_install() {
   $user->roles[] = 'administrator';
   $user->save();
 
-
   // Enable registration for the public.
   \Drupal::configFactory()->getEditable('user.settings')->set('register', USER_REGISTER_VISITORS)->save(TRUE);
 
-
   // Enable the admin theme.
   \Drupal::configFactory()->getEditable('node.settings')->set('use_admin_theme', TRUE)->save(TRUE);
+
+  // Rebuild node_access after camp_core installed.
+  node_access_rebuild(true);
 }

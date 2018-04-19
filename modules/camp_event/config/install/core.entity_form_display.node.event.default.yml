@@ -2,18 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.event.field_date
     - field.field.node.event.field_event_description
     - field.field.node.event.field_event_more_info
     - field.field.node.event.field_event_type
     - field.field.node.event.field_event_url_more_info
-    - field.field.node.event.field_sponsors
-    - field.field.node.event.field_stick_to_top_of_date
-    - field.field.node.event.field_stick_to_top_of_schedule
-    - field.field.node.event.field_venue
     - node.type.event
   module:
-    - datetime_range
     - field_group
     - link
     - path
@@ -27,7 +21,6 @@ third_party_settings:
         - field_event_description
         - field_event_more_info
         - field_event_url_more_info
-        - field_sponsors
       parent_name: ''
       weight: 0
       format_type: fieldset
@@ -39,19 +32,14 @@ third_party_settings:
       label: 'Event Information'
       region: content
     group_event_admin:
-      children:
-        - field_venue
-        - field_registration_limit
-        - field_date
-        - field_stick_to_top_of_schedule
-        - field_stick_to_top_of_date
+      children: []
       parent_name: ''
       weight: 1
       format_type: fieldset
       format_settings:
         id: ''
         classes: ''
-        description: ''
+        description: 'Used for administering the Event'
         required_fields: true
       label: 'Event Admin'
       region: content
@@ -66,12 +54,6 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  field_date:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: daterange_default
-    region: content
   field_event_description:
     weight: 4
     settings:
@@ -102,32 +84,6 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
-    region: content
-  field_sponsors:
-    weight: 7
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-    region: content
-  field_stick_to_top_of_date:
-    type: boolean_checkbox
-    weight: 9
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_stick_to_top_of_schedule:
-    type: boolean_checkbox
-    weight: 8
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  field_venue:
-    weight: 5
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
   path:
     type: path

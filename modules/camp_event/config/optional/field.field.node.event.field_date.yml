@@ -5,6 +5,7 @@ dependencies:
     - field.storage.node.field_date
     - node.type.event
   module:
+    - camp_schedule
     - datetime_range
 id: node.event.field_date
 field_name: field_date

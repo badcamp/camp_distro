@@ -5,16 +5,16 @@
  */
 function camp_session_install(){
   if(\Drupal::moduleHandler()->moduleExists('camp_schedule')){
-    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('camp_session');
+    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('session');
   }
 }
 
 /**
- * Implements hook_module_installed().
+ * Implements hook_modules_installed().
  */
-function camp_session_module_installed($modules){
-  if(in_array('camp_schedule')){
-    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('camp_session');
+function camp_session_modules_installed($modules){
+  if(in_array('camp_schedule', $modules)){
+    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('session');
   }
 }
 
@@ -22,14 +22,9 @@ function camp_session_module_installed($modules){
  * Implements hook_uninstall().
  */
 function camp_session_uninstall() {
-  // Delete Configuration generated at at activation.
-  $dir = DRUPAL_ROOT . DIRECTORY_SEPARATOR . drupal_get_path('module', 'camp_session') . DIRECTORY_SEPARATOR . 'config/install';
-  $files = file_scan_directory($dir, '/.*\.yml$/');
-  foreach ($files as $file) {
-    \Drupal::configFactory()->getEditable($file->name)->delete();
-  }
+  camp_core_uninstall_config('camp_session');
 
   if(\Drupal::moduleHandler()->moduleExists('camp_schedule')){
-    \Drupal::service('camp_schedule.bundles')->removeBundleFromFlag('camp_session');
+    \Drupal::service('camp_schedule.bundles')->removeBundleFromFlag('session');
   }
 }

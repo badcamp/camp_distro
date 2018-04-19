@@ -8,6 +8,7 @@ dependencies:
   module:
     - text
     - user
+    - camp_schedule
 id: node.event.schedule
 targetEntityType: node
 bundle: event

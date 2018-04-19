@@ -5,23 +5,4 @@ core: 8.x
 package: Camp
 dependencies:
   - camp_core
-  - camp_schedule
-  - camp_sponsor
-  - camp_venue
-  - daterange_compact
-  - datetime_range
-  - field
-  - field_delimiter
-  - field_group
-  - field_permissions
-  - flag
-  - link
-  - menu_ui
-  - node
-  - path
-  - pathauto
-  - taxonomy
-  - text
-  - user
-  - views
 version: 8.x-1.0
