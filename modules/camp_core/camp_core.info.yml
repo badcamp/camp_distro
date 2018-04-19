@@ -8,18 +8,20 @@ version: 8.x-1.0
 dependencies:
   - block
   - block_content
-  - camp_core
   - ckeditor
   - daterange_compact
   - datetime_range
   - editor
   - field
+  - field_delimiter
+  - field_group
   - field_permissions
   - file
   - filter
   - honeypot
   - image
   - key
+  - link
   - menu_link_content
   - menu_ui
   - node

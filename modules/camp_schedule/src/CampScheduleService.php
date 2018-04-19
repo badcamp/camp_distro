@@ -7,16 +7,18 @@
 
 namespace Drupal\camp_schedule;
 
+use Drupal\Core\Config\ConfigFactoryInterface;
+
 class CampScheduleService {
 
   /** @var \Drupal\Core\Config\ConfigFactoryInterface */
-  protected $config_factory;
+  protected $configFactory;
 
   /**
    * Constructor.
    */
-  public function __construct() {
-    $this->configFactory = $config_factory;
+  public function __construct(ConfigFactoryInterface $configFactory) {
+    $this->configFactory = $configFactory;
   }
 
   public function addBundleToFlag($bundle) {
@@ -39,5 +41,4 @@ class CampScheduleService {
       $config->save(TRUE);
     }
   }
-
 }

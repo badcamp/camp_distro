@@ -15,6 +15,7 @@ dependencies:
   module:
     - text
     - user
+    - camp_schedule
 id: node.training.schedule
 targetEntityType: node
 bundle: training

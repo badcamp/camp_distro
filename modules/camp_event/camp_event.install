@@ -5,31 +5,66 @@
  */
 function camp_event_install(){
   if(\Drupal::moduleHandler()->moduleExists('camp_schedule')){
-    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('camp_event');
+    camp_event_add_camp_schedule_fields();
+  }
+
+  if(\Drupal::moduleHandler()->moduleExists('camp_venue')){
+    camp_event_add_camp_veneue_fields();
+  }
+
+  if(\Drupal::moduleHandler()->moduleExists('camp_sponsor')){
+    camp_event_add_camp_sponsor_fields();
   }
 }
 
 /**
- * Implements hook_module_installed().
+ * Implements hook_modules_installed().
  */
-function camp_event_module_installed($modules){
-  if(in_array('camp_schedule')){
-    \Drupal::service('camp_schedule.bundles')->addBundleToFlag('camp_event');
+function camp_event_modules_installed($modules){
+  if(in_array('camp_schedule', $modules)){
+    camp_event_add_camp_schedule_fields();
+  }
+
+  if(in_array('camp_venue', $modules)){
+    camp_event_add_camp_veneue_fields();
+  }
+
+  if(in_array('camp_sponsor', $modules)){
+    camp_event_add_camp_sponsor_fields();
   }
 }
 
 /**
- * Implements hook_uninstall().
+ * Implements hook_module_preuninstall().
  */
-function camp_event_uninstall() {
-  // Delete Configuration generated at at activation.
-  $dir = DRUPAL_ROOT . DIRECTORY_SEPARATOR . drupal_get_path('module', 'camp_event') . DIRECTORY_SEPARATOR . 'config/install';
-  $files = file_scan_directory($dir, '/.*\.yml$/');
-  foreach ($files as $file) {
-    \Drupal::configFactory()->getEditable($file->name)->delete();
+function camp_event_module_preuninstall($module) {
+  if($module == 'camp_event') {
+    camp_core_uninstall_config('camp_event');
   }
 
-  if(\Drupal::moduleHandler()->moduleExists('camp_schedule')){
-    \Drupal::service('camp_schedule.bundles')->removeBundleFromFlag('camp_event');
+  if ($module == 'camp_schedule') {
+    camp_event_remove_camp_schedule_fields();
   }
+
+  if ($module == 'camp_venue') {
+    camp_event_remove_camp_venue_fields();
+  }
+
+  if ($module == 'camp_sponsor') {
+    camp_event_remove_camp_sponsor_fields();
+  }
+}
+
+/**
+ *
+ */
+function camp_event_add_camp_schedule_fields() {
+  \Drupal::service('camp_schedule.bundles')->addBundleToFlag('event');
+}
+
+/**
+ *
+ */
+function camp_event_remove_camp_schedule_fields() {
+  \Drupal::service('camp_schedule.bundles')->removeBundleFromFlag('event');
 }
