@@ -1,0 +1,2 @@
+camp_content.admin:
+  deriver: Drupal\camp_core\Plugin\Derivative\CampContentActionLink

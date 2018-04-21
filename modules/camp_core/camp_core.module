@@ -141,3 +141,105 @@ function array_insert (&$array, $position, $insert_array) {
   $first_array = array_splice ($array, 0, $position);
   $array = array_merge ($first_array, $insert_array, $array);
 }
+
+/**
+ * Insert values in a associative array at a given position
+ *
+ * @param array $array
+ *   The array in which you want to insert
+ * @param array $values
+ *   The key => values you want to insert
+ * @param string $pivot
+ *   The key position to use as insert position.
+ * @param string $position
+ *   Where to insert the values relative to given $position.
+ *   Allowed values: 'after' - default or 'before'
+ *
+ * @return array
+ *   The resulted array with $values inserted a given position
+ */
+function array_insert_at_position($array, $values, $pivot, $position = 'after'){
+  $offset = 0;
+  foreach($array as $key => $value){
+    ++$offset;
+    if ($key == $pivot){
+      break;
+    }
+  }
+
+  if ($position == 'before'){
+    --$offset;
+  }
+
+  return
+    array_slice($array, 0, $offset, TRUE)
+    + $values
+    + array_slice($array, $offset, NULL, TRUE)
+    ;
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function camp_core_form_node_type_edit_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+
+  /** @var \Drupal\node\NodeTypeInterface $type */
+  $type = $form_state->getFormObject()->getEntity();
+
+  $form['camp_core'] = [
+    '#type' => 'details',
+    '#title' => t('Content Type Listing'),
+    '#group' => 'additional_settings'
+  ];
+
+  $views = camp_core_get_view_listing();
+  $form['camp_core']['camp_core_view'] = [
+    '#type' => 'select',
+    '#title' => t('List Page View'),
+    '#options' => array_merge(['' => t('Default')], $views),
+    '#default_value' => $type->getThirdPartySetting('camp_core', 'view', ''),
+    '#description' => t('Replace the individual display pages with a custom view.'),
+  ];
+
+  $form['#entity_builders'][] = 'camp_core_form_node_type_form_builder';
+}
+
+/**
+ * Entity builder for the node type form with menu options.
+ */
+function camp_core_form_node_type_form_builder($entity_type, \Drupal\node\NodeTypeInterface $type, &$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  if($form_state->getValue('evaluator_enable')){
+    $type->setThirdPartySetting('camp_core', 'view', $form_state->getValue('camp_core_view'));
+  }
+  else{
+    $type->unsetThirdPartySetting('camp_core', 'view');
+  }
+}
+
+/**
+ * @return array
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ */
+function camp_core_get_view_listing() {
+  $views = &drupal_static(__FUNCTION__);
+  if (!isset($views)) {
+
+    $views = [];
+    $allViews = \Drupal::entityTypeManager()
+      ->getStorage('view')
+      ->loadMultiple();
+    foreach ($allViews AS $view) {
+      $tmp = [];
+      $id = $view->id();
+      foreach ($view->get('display') AS $display) {
+        $display_id = $display['id'];
+        $tmp[$id . '.' . $display_id] = $display['display_title'];
+      }
+      $views[$view->get('label')] = $tmp;
+    }
+    ksort($views);
+  }
+
+  return $views;
+}

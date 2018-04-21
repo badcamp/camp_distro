@@ -3,6 +3,10 @@ camp_core.content:
   parent: system.admin_content
   route_name: camp_core.content
 
+camp_core.content.pages:
+  deriver: Drupal\camp_core\Plugin\Derivative\CampContentMenuLink
+  parent: camp_core.content
+
 camp_core.config:
   title: 'Camp'
   parent: system.admin_config
