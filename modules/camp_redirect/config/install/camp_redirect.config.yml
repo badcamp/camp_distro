@@ -1,0 +1,3 @@
+donation_path: "/donation"
+excluded_roles: [administrator]
+langcode: en

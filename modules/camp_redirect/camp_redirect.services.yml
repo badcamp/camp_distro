@@ -1,0 +1,7 @@
+services:
+  camp_redirect.donate_route_subscriber:
+    class: Drupal\camp_redirect\EventSubscriber\CampRedirectSubscriber
+    arguments: ['@config.factory', '@current_user']
+    tags:
+      - { name: event_subscriber }
+
