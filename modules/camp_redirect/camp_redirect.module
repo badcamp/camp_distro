@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Contains camp_redirect.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function camp_redirect_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the camp_redirect module.
+    case 'help.page.camp_redirect':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Camp Redirect') . '</p>';
+      $output .= '<p>' . t('Upon login, after initial user account 
+      creation has been completed, this module redirects the user to the 
+      donation form.') . '</p>';
+      $output .= '<p>' . t('The default path the module redirects the 
+      user to upon login in /form/donation. This configuration may be overridden 
+      by overriding the donation_path configuration setting.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

@@ -1,0 +1,5 @@
+name: Camp Redirect
+type: module
+description: Redirects users to alternative paths, such as the Donation page.
+core: 8.x
+package: Camp

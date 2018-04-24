@@ -1,0 +1,13 @@
+{
+  "name": "drupal/camp_redirect",
+  "type": "drupal-module",
+  "description": "Camp Redirect",
+  "keywords": ["Drupal","Camp"],
+  "license": "GPL-2.0+",
+  "homepage": "https://github.com/badcamp/badcamp-2018",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/badcamp/badcamp-2018"
+  },
+  "require": { }
+}
