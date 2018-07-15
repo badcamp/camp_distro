@@ -60,7 +60,7 @@ function camp_session_mail($key, &$message, $params) {
 
     $subject = $config['subject'];
     $message['subject'] = $tokenService->replace($subject, $replacements);
-    $body = check_markup($config['value'], $config['format']);
+    $body = check_markup($config['message']['value'], $config['message']['format']);
     $message['body'] = $tokenService->replace($body, $replacements);
   }
 }
@@ -70,7 +70,7 @@ function camp_session_mail($key, &$message, $params) {
  */
 function camp_session_entity_insert(EntityInterface $entity) {
   if($entity->getEntityTypeId() == 'node' && $entity->bundle() == 'session') {
-    $user = \Drupal::currentUser();
+    $user = $entity->get('field_speakers')->first()->get('entity')->getTarget()->getValue();
     $mailManager = \Drupal::service('plugin.manager.mail');
     $module = 'camp_session';
     $key = 'session_proposed'; // Replace with Your key
