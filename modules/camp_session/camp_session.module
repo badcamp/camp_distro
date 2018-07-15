@@ -69,11 +69,11 @@ function camp_session_mail($key, &$message, $params) {
  * Implements hook_entity_insert().
  */
 function camp_session_entity_insert(EntityInterface $entity) {
-  if($entity->getEntityType() == 'node' && $entity->bundle() == 'session') {
+  if($entity->getEntityTypeId() == 'node' && $entity->bundle() == 'session') {
     $user = \Drupal::currentUser();
     $mailManager = \Drupal::service('plugin.manager.mail');
     $module = 'camp_session';
-    $key = 'session_submitted'; // Replace with Your key
+    $key = 'session_proposed'; // Replace with Your key
     $to = $user->getEmail();
     $langcode = $user->getPreferredLangcode();
     $send = true;
