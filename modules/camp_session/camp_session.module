@@ -61,7 +61,8 @@ function camp_session_mail($key, &$message, $params) {
     $subject = $config['subject'];
     $message['subject'] = $tokenService->replace($subject, $replacements);
     $body = check_markup($config['message']['value'], $config['message']['format']);
-    $message['body'] = $tokenService->replace($body, $replacements);
+    $body = $tokenService->replace($body, $replacements);
+		$message['body'][] = \Drupal\Core\Mail\MailFormatHelper::htmlToText($body);
   }
 }
 
